@@ -13,14 +13,13 @@ import javax.swing.JOptionPane;
  *
  * @author Paul Idrovo
  */
-public class VistaDirectorioGeneral extends javax.swing.JInternalFrame {
+public class VistaMisTelefonos extends javax.swing.JInternalFrame {
 
     private ControladorTelefono controladorTelefono;
     private ControladorUsuario controladorUsuario;
 
-    public VistaDirectorioGeneral(ControladorUsuario controladorUsuario, ControladorTelefono controladorTelefono) {
+    public VistaMisTelefonos(ControladorUsuario controladorUsuario, ControladorTelefono controladorTelefono) {
         initComponents();
-        //ASIGNAR PARAMETROS
         this.controladorTelefono = controladorTelefono;
         this.controladorUsuario = controladorUsuario;
     }
@@ -34,18 +33,14 @@ public class VistaDirectorioGeneral extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        cmdTipoDato = new javax.swing.JComboBox<>();
-        btBuscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         lstTelefonos = new javax.swing.JList<>();
+        btBuscar = new javax.swing.JButton();
         txtDatoBusqueda = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        btListarTodos = new javax.swing.JButton();
+        btListarTodos1 = new javax.swing.JButton();
         lblTitulo = new javax.swing.JLabel();
-
-        cmdTipoDato.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        cmdTipoDato.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR TIPO", "CORREO", "CEDULA" }));
-
-        btBuscar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        btBuscar.setText("BUSCAR");
 
         lstTelefonos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "LISTA DE TELEFONOS", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 14))); // NOI18N
         lstTelefonos.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
@@ -54,6 +49,9 @@ public class VistaDirectorioGeneral extends javax.swing.JInternalFrame {
         lstTelefonos.setMinimumSize(new java.awt.Dimension(278, 250));
         jScrollPane1.setViewportView(lstTelefonos);
 
+        btBuscar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        btBuscar.setText("BUSCAR");
+
         txtDatoBusqueda.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         txtDatoBusqueda.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -61,8 +59,17 @@ public class VistaDirectorioGeneral extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel1.setText("CODIGO:");
+
+        btListarTodos.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        btListarTodos.setText("LISTAR MI DIRECTORIO");
+
+        btListarTodos1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        btListarTodos1.setText("ELIMINAR TELEFONO");
+
         lblTitulo.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
-        lblTitulo.setText("DIRECTORIO GENERAL");
+        lblTitulo.setText("MI DIRECTORIO");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -71,53 +78,63 @@ public class VistaDirectorioGeneral extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(cmdTipoDato, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27)
-                                .addComponent(txtDatoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(47, 47, 47)
-                                .addComponent(btBuscar))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 674, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel1)
+                        .addGap(29, 29, 29)
+                        .addComponent(txtDatoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btBuscar))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(224, 224, 224)
-                        .addComponent(lblTitulo)))
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 567, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btListarTodos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btListarTodos1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(10, 10, 10))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(lblTitulo)
+                .addGap(299, 299, 299))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(9, 9, 9)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(lblTitulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmdTipoDato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btBuscar)
-                    .addComponent(txtDatoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10))
+                    .addComponent(jLabel1)
+                    .addComponent(txtDatoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btBuscar))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(103, 103, 103)
+                        .addComponent(btListarTodos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btListarTodos1)))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtDatoBusquedaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDatoBusquedaKeyTyped
-        if (cmdTipoDato.getSelectedItem().toString().equals("CEDULA")) {
-            char validar = evt.getKeyChar();
-            int asscii = (int) validar;
-            if (!Character.isDigit(validar) && asscii != 8) {
-                evt.consume();
-                JOptionPane.showMessageDialog(null, "INGRESE SOLO NUMEROS PARA LA CEDULA", "ERROR DE DATOS", JOptionPane.WARNING_MESSAGE);
-            }
+        char validar = evt.getKeyChar();
+        int asscii = (int) validar;
+        if (!Character.isDigit(validar) && asscii != 8) {
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "INGRESE SOLO NUMEROS", "ERROR DE DATOS", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_txtDatoBusquedaKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btBuscar;
-    private javax.swing.JComboBox<String> cmdTipoDato;
+    private javax.swing.JButton btListarTodos;
+    private javax.swing.JButton btListarTodos1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JList<String> lstTelefonos;

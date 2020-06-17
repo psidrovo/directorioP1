@@ -7,6 +7,7 @@ package ec.edu.ups.vista;
 
 import ec.edu.ups.controlador.ControladorTelefono;
 import ec.edu.ups.controlador.ControladorUsuario;
+import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
@@ -22,23 +23,27 @@ public class VistaInicioSesion extends javax.swing.JInternalFrame {
     private JMenuItem mnIniciarSesion;
     private JMenuItem mnSalir;
     private JMenuItem mnRegistrarse;
+    private JMenuItem mnEliminarTelefono;
     private ControladorTelefono controladorTelefono;
     private ControladorUsuario controladorUsuario;
+    private JLabel lblUsuarioLogin;
 
     public VistaInicioSesion(JMenuItem mnAgregarTelefono, JMenuItem mnEditarTelefono, JMenuItem mnMisTelefonos, JMenuItem mnIniciarSesion,
-            JMenuItem mnSalir, JMenuItem mnRegistrarse, ControladorUsuario controladorUsuario, ControladorTelefono controladorTelefono) {
+            JMenuItem mnSalir, JMenuItem mnRegistrarse, JMenuItem mnEliminarTelefono, ControladorUsuario controladorUsuario, ControladorTelefono controladorTelefono, JLabel lblUsuarioLogin) {
 
         initComponents();
-        
+
         //ASIGNAR PARAMETROS
         this.controladorTelefono = controladorTelefono;
         this.controladorUsuario = controladorUsuario;
         this.mnAgregarTelefono = mnAgregarTelefono;
         this.mnEditarTelefono = mnEditarTelefono;
         this.mnMisTelefonos = mnMisTelefonos;
+        this.mnEliminarTelefono = mnEliminarTelefono;
         this.mnIniciarSesion = mnIniciarSesion;
         this.mnSalir = mnSalir;
         this.mnRegistrarse = mnRegistrarse;
+        this.lblUsuarioLogin = lblUsuarioLogin;
         this.setResizable(false);
     }
 
@@ -59,7 +64,7 @@ public class VistaInicioSesion extends javax.swing.JInternalFrame {
         btIniciar = new javax.swing.JButton();
 
         setClosable(true);
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         setForeground(java.awt.Color.lightGray);
         setTitle("INICIAR SESION");
 
@@ -147,10 +152,12 @@ public class VistaInicioSesion extends javax.swing.JInternalFrame {
             mnAgregarTelefono.setEnabled(true);
             mnEditarTelefono.setEnabled(true);
             mnMisTelefonos.setEnabled(true);
+            mnEliminarTelefono.setEnabled(true);
             mnIniciarSesion.setEnabled(false);
             mnSalir.setEnabled(true);
             mnRegistrarse.setEnabled(false);
             this.setVisible(false);
+            lblUsuarioLogin.setText(txtUsuario.getText().toUpperCase());
             JOptionPane.showMessageDialog(null, "INICIO DE SESION CORRECTO", "LOGIN", JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(null, "USUARIO Y/O CONTRASEÑA INCORRECTOS", "ERROR", JOptionPane.ERROR_MESSAGE);
