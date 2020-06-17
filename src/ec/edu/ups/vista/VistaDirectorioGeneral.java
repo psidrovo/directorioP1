@@ -53,6 +53,7 @@ public class VistaDirectorioGeneral extends javax.swing.JInternalFrame {
         cmdTipoDato.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR TIPO", "CORREO", "CEDULA" }));
 
         btBuscar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        btBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/iconos/buscar.png"))); // NOI18N
         btBuscar.setText("BUSCAR");
         btBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,6 +79,7 @@ public class VistaDirectorioGeneral extends javax.swing.JInternalFrame {
         lblTitulo.setText("DIRECTORIO GENERAL");
 
         btListarTodos.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        btListarTodos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/iconos/agenda.png"))); // NOI18N
         btListarTodos.setText("TODO DIRECTORIO");
         btListarTodos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,17 +100,16 @@ public class VistaDirectorioGeneral extends javax.swing.JInternalFrame {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 703, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(20, 20, 20)
-                                .addComponent(btListarTodos))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(cmdTipoDato, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(27, 27, 27)
                                 .addComponent(txtDatoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(47, 47, 47)
-                                .addComponent(btBuscar)
-                                .addGap(316, 316, 316)))))
-                .addContainerGap())
+                                .addComponent(btBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 703, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20)
+                                .addComponent(btListarTodos)))))
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

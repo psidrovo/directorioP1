@@ -51,7 +51,7 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
         txtCodigo = new javax.swing.JTextField();
         cmbTipo = new javax.swing.JComboBox<>();
         btAgregar = new javax.swing.JButton();
-        txtNumero = new javax.swing.JTextField();
+        txtNumero = new javax.swing.JFormattedTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         txtCodigoEditar = new javax.swing.JTextField();
@@ -61,7 +61,7 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        txtNumeroEditar = new javax.swing.JTextField();
+        txtNumeroEditar = new javax.swing.JFormattedTextField();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDirectorio = new javax.swing.JTable();
@@ -102,8 +102,14 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
 
         cmbTipo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         cmbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR", "FIJO", "MOVIL", "FAX", "CASA", "TRABAJO", "FAX CASA", "FAX TRABAJO", "LOCALIZADOR" }));
+        cmbTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbTipoActionPerformed(evt);
+            }
+        });
 
         btAgregar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        btAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/iconos/anadir (1).png"))); // NOI18N
         btAgregar.setText("AGREGAR");
         btAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,12 +117,8 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
             }
         });
 
-        txtNumero.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        txtNumero.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNumeroKeyTyped(evt);
-            }
-        });
+        txtNumero.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtNumero.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -132,7 +134,7 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
                         .addGap(81, 81, 81)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtCodigo)
-                            .addComponent(cmbTipo, 0, 261, Short.MAX_VALUE)))
+                            .addComponent(cmbTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
@@ -141,7 +143,7 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btAgregar)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addGap(124, 124, 124))
                             .addComponent(cmbOperadora, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtNumero))))
                 .addGap(56, 56, 56))
@@ -160,9 +162,9 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cmbTipo))
                 .addGap(15, 15, 15)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
-                    .addComponent(txtNumero))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtNumero)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -170,8 +172,8 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
                         .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE))
                     .addComponent(cmbOperadora))
                 .addGap(15, 15, 15)
-                .addComponent(btAgregar)
-                .addGap(15, 15, 15))
+                .addComponent(btAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "EDITAR TELEFONO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14))); // NOI18N
@@ -191,8 +193,14 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
         cmbTipoEditar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         cmbTipoEditar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR", "FIJO", "MOVIL", "OTRO" }));
         cmbTipoEditar.setEnabled(false);
+        cmbTipoEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbTipoEditarActionPerformed(evt);
+            }
+        });
 
         btGuardar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        btGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/iconos/salvar.png"))); // NOI18N
         btGuardar.setText("GUARDAR");
         btGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -213,12 +221,7 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
         jLabel12.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabel12.setText("TIPO");
 
-        txtNumeroEditar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        txtNumeroEditar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNumeroEditarKeyTyped(evt);
-            }
-        });
+        txtNumeroEditar.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -240,8 +243,8 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cmbOperadoraEditar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cmbTipoEditar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtNumeroEditar)
-                            .addComponent(txtCodigoEditar, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(txtCodigoEditar, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtNumeroEditar))
                         .addGap(40, 40, 40))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -258,7 +261,7 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
                 .addGap(15, 15, 15)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNumeroEditar))
+                    .addComponent(txtNumeroEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -293,6 +296,9 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblDirectorio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tblDirectorio.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblDirectorio.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblDirectorio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblDirectorioMouseClicked(evt);
@@ -306,6 +312,7 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
         jLabel5.setText("CODIGO:");
 
         btBuscar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        btBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/iconos/buscar.png"))); // NOI18N
         btBuscar.setText("BUSCAR");
         btBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -314,6 +321,7 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
         });
 
         btListarTodos.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        btListarTodos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/iconos/directorio-telefonico.png"))); // NOI18N
         btListarTodos.setText("MI DIRECTORIO");
         btListarTodos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -322,6 +330,7 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
         });
 
         btEliminar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        btEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/iconos/basura.png"))); // NOI18N
         btEliminar.setText("ELIMINAR TELEFONO");
         btEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -336,23 +345,19 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 735, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtCodigoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(31, 31, 31)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btListarTodos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(btBuscar)
-                        .addGap(76, 76, 76))))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtCodigoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btListarTodos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                            .addComponent(btBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -363,13 +368,13 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(txtCodigoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btBuscar)
-                        .addGap(29, 29, 29)
-                        .addComponent(btListarTodos)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btEliminar)
-                        .addGap(279, 279, 279))
+                        .addGap(20, 20, 20)
+                        .addComponent(btBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(btListarTodos, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(btEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(252, 252, 252))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
         );
@@ -379,13 +384,13 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(10, 10, 10))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -396,7 +401,7 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         pack();
@@ -514,34 +519,42 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_btBuscarActionPerformed
 
-    private void txtNumeroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroKeyTyped
-        char validar = evt.getKeyChar();
-        int asscii = (int) validar;
-        if (!Character.isDigit(validar) && asscii != 8) {
-            evt.consume();
-            JOptionPane.showMessageDialog(null, "INGRESE SOLO NUMEROS", "ERROR DE DATOS", JOptionPane.WARNING_MESSAGE);
-        }
-    }//GEN-LAST:event_txtNumeroKeyTyped
-
-    private void txtNumeroEditarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroEditarKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNumeroEditarKeyTyped
-
     private void tblDirectorioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDirectorioMouseClicked
         int fila = tblDirectorio.getSelectedRow();
         txtCodigoEditar.setText(tblDirectorio.getValueAt(fila, 0).toString());
         txtNumeroEditar.setText(tblDirectorio.getValueAt(fila, 1).toString());
-        switch (tblDirectorio.getValueAt(fila, 2).toString()) {
-            case "MOVIL":
-                cmbTipoEditar.setSelectedIndex(2);
-                break;
-            case "FIJO":
-                cmbTipoEditar.setSelectedIndex(1);
-                break;
-            default:
-                cmbTipoEditar.setSelectedIndex(3);
-                break;
-        }
+        cmbOperadoraEditar.setEditable(true);
+        cmbTipoEditar.setEditable(true);
+       switch (tblDirectorio.getValueAt(fila, 2).toString()) {
+                case "FIJO":
+                    cmbTipoEditar.setSelectedIndex(1);
+                    break;
+                case "MOVIL":
+                    cmbTipoEditar.setSelectedIndex(2);
+                    break;
+                case "FAX":
+                    cmbTipoEditar.setSelectedIndex(3);
+                    break;
+                case "CASA":
+                    cmbTipoEditar.setSelectedIndex(4);
+                    break;
+                case "TRABAJO":
+                    cmbTipoEditar.setSelectedIndex(5);
+                    break;
+                case "FAX CASA":
+                    cmbTipoEditar.setSelectedIndex(6);
+                    break;
+                case "FAX TRABAJO":
+                    cmbTipoEditar.setSelectedIndex(7);
+                    break;
+                case "LOCALIZADOR":
+                    cmbTipoEditar.setSelectedIndex(8);
+                    break;
+
+                default:
+                    cmbTipoEditar.setSelectedIndex(0);
+                    break;
+            }
         switch (tblDirectorio.getValueAt(fila, 3).toString()) {
             case "MOVISTAR":
                 cmbOperadoraEditar.setSelectedIndex(1);
@@ -563,6 +576,122 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
                 break;
         }
     }//GEN-LAST:event_tblDirectorioMouseClicked
+
+    private void cmbTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoActionPerformed
+
+        try {
+            txtNumero.setEnabled(true);
+            String tipo = (String) cmbTipo.getSelectedItem();
+            switch (tipo) {
+                case "FIJO":
+                    txtNumero.setFormatterFactory(
+                    new javax.swing.text.DefaultFormatterFactory(
+                            new javax.swing.text.MaskFormatter("(+593)#-###-####")));
+                    break;
+                case "MOVIL":                    
+                    txtNumero.setFormatterFactory(
+                    new javax.swing.text.DefaultFormatterFactory(
+                            new javax.swing.text.MaskFormatter("(+593)##-###-####")));
+                    break;
+                case "FAX":
+                    txtNumero.setFormatterFactory(
+                    new javax.swing.text.DefaultFormatterFactory(
+                            new javax.swing.text.MaskFormatter("FAX (+593)##-###-####")));
+                    break;
+                case "CASA":
+                    txtNumero.setFormatterFactory(
+                    new javax.swing.text.DefaultFormatterFactory(
+                            new javax.swing.text.MaskFormatter("(+593)#-###-####")));
+                    break;
+                case "TRABAJO":
+                    txtNumero.setFormatterFactory(
+                    new javax.swing.text.DefaultFormatterFactory(
+                            new javax.swing.text.MaskFormatter("(+593)#-###-####")));
+                    break;
+                case "FAX CASA":
+                    txtNumero.setFormatterFactory(
+                    new javax.swing.text.DefaultFormatterFactory(
+                            new javax.swing.text.MaskFormatter("FAX (+593)##-###-####")));
+                    break;
+                case "FAX TRABAJO":
+                    txtNumero.setFormatterFactory(
+                    new javax.swing.text.DefaultFormatterFactory(
+                            new javax.swing.text.MaskFormatter("FAX (+593)##-###-####")));
+                    break;
+                case "LOCALIZADOR":
+                    txtNumero.setFormatterFactory(
+                    new javax.swing.text.DefaultFormatterFactory(
+                            new javax.swing.text.MaskFormatter("LOC (+593)##-###-####")));
+                    break;
+
+                default:
+                    txtNumero.setEnabled(false);
+                    break;
+            }
+            
+        } catch (ParseException ex) {
+            Logger.getLogger(VistaMiDirectorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_cmbTipoActionPerformed
+
+    private void cmbTipoEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoEditarActionPerformed
+        
+        try {
+            txtNumero.setEnabled(true);
+            String tipo = (String) cmbTipoEditar.getSelectedItem();
+            switch (tipo) {
+                case "FIJO":
+                    txtNumero.setFormatterFactory(
+                    new javax.swing.text.DefaultFormatterFactory(
+                            new javax.swing.text.MaskFormatter("(+593)#-###-####")));
+                    break;
+                case "MOVIL":                    
+                    txtNumero.setFormatterFactory(
+                    new javax.swing.text.DefaultFormatterFactory(
+                            new javax.swing.text.MaskFormatter("(+593)##-###-####")));
+                    break;
+                case "FAX":
+                    txtNumero.setFormatterFactory(
+                    new javax.swing.text.DefaultFormatterFactory(
+                            new javax.swing.text.MaskFormatter("FAX (+593)##-###-####")));
+                    break;
+                case "CASA":
+                    txtNumero.setFormatterFactory(
+                    new javax.swing.text.DefaultFormatterFactory(
+                            new javax.swing.text.MaskFormatter("(+593)#-###-####")));
+                    break;
+                case "TRABAJO":
+                    txtNumero.setFormatterFactory(
+                    new javax.swing.text.DefaultFormatterFactory(
+                            new javax.swing.text.MaskFormatter("(+593)#-###-####")));
+                    break;
+                case "FAX CASA":
+                    txtNumero.setFormatterFactory(
+                    new javax.swing.text.DefaultFormatterFactory(
+                            new javax.swing.text.MaskFormatter("FAX (+593)##-###-####")));
+                    break;
+                case "FAX TRABAJO":
+                    txtNumero.setFormatterFactory(
+                    new javax.swing.text.DefaultFormatterFactory(
+                            new javax.swing.text.MaskFormatter("FAX (+593)##-###-####")));
+                    break;
+                case "LOCALIZADOR":
+                    txtNumero.setFormatterFactory(
+                    new javax.swing.text.DefaultFormatterFactory(
+                            new javax.swing.text.MaskFormatter("LOC (+593)##-###-####")));
+                    break;
+
+                default:
+                    txtNumero.setEnabled(false);
+                    break;
+            }
+            
+        } catch (ParseException ex) {
+            Logger.getLogger(VistaMiDirectorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_cmbTipoEditarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -592,7 +721,7 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtCodigoBuscar;
     private javax.swing.JTextField txtCodigoEditar;
-    private javax.swing.JTextField txtNumero;
-    private javax.swing.JTextField txtNumeroEditar;
+    private javax.swing.JFormattedTextField txtNumero;
+    private javax.swing.JFormattedTextField txtNumeroEditar;
     // End of variables declaration//GEN-END:variables
 }

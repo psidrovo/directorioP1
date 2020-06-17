@@ -91,6 +91,7 @@ public class VistaRegistrar extends javax.swing.JInternalFrame {
         pwsConfirmar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
 
         btRegistrar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        btRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/iconos/salvar.png"))); // NOI18N
         btRegistrar.setText("REGISTRAR");
         btRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
