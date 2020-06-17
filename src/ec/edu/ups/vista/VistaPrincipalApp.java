@@ -9,6 +9,7 @@ import ec.edu.ups.controlador.ControladorTelefono;
 import ec.edu.ups.controlador.ControladorUsuario;
 import ec.edu.ups.dao.TelefonoDao;
 import ec.edu.ups.dao.UsuarioDao;
+import ec.edu.ups.modelo.Usuario;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
@@ -38,8 +39,8 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize(screenSize);
         lblFondo.setSize(screenSize);
-        lblTitulo.setBounds((int) screenSize.getWidth() - 500, 10, 450, 40);
-        lblUsuarioLogin.setBounds((int) screenSize.getWidth() - 500, 60, 450, 40);
+        lblTitulo.setBounds(10, (int) screenSize.getHeight() - 200, 1000, 40);
+        lblUsuarioLogin.setBounds(10, (int) screenSize.getHeight() - 275, 1500, 40);
         //CREAR DAO Y CONTROLADORES
         daoTelefono = new TelefonoDao();
         daoUsuario = new UsuarioDao();
@@ -48,12 +49,12 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
 
         //CREAR VISTAS
         agregarTelefono = new VistaAgregarTelefono(controladorUsuario, controladorTelefono);
-        inicioSesion = new VistaInicioSesion(mnAgregarTelefono, mnEditarTelefono, mnMisTelefonos, mnIniciarSesion, mnEliminarTelefono, mnCerrarSesion, mnRegistrarse, controladorUsuario, controladorTelefono, lblUsuarioLogin);
+        inicioSesion = new VistaInicioSesion(mnAgregarTelefono, mnEditarTelefono, mnMisTelefonos, mnIniciarSesion, mnEliminarTelefono, mnCerrarSesion, mnRegistrarse, mnCerrarSesion, controladorUsuario, controladorTelefono, lblUsuarioLogin);
         directorioGeneral = new VistaDirectorioGeneral(controladorUsuario, controladorTelefono);
         editarTelefono = new VistaEditarTelefono(controladorUsuario, controladorTelefono);
         misTelefonos = new VistaMisTelefonos(controladorUsuario, controladorTelefono);
         resgistrar = new VistaRegistrar(controladorUsuario, controladorTelefono);
-        
+
         //Agregar Panel
         desktopPane.add(inicioSesion);
         desktopPane.add(directorioGeneral);
@@ -61,7 +62,7 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
         desktopPane.add(editarTelefono);
         desktopPane.add(misTelefonos);
         desktopPane.add(resgistrar);
-        
+
         //Posicion
         this.setLocationRelativeTo(null);
     }
@@ -101,17 +102,17 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
         desktopPane.add(lblFondo);
         lblFondo.setBounds(560, 10, 30, 30);
 
-        lblUsuarioLogin.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        lblUsuarioLogin.setFont(new java.awt.Font("Verdana", 0, 36)); // NOI18N
         lblUsuarioLogin.setText("BIENVENIDO");
         desktopPane.add(lblUsuarioLogin);
-        lblUsuarioLogin.setBounds(140, 50, 450, 30);
+        lblUsuarioLogin.setBounds(70, 250, 450, 40);
 
-        lblTitulo.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        lblTitulo.setFont(new java.awt.Font("Verdana", 1, 48)); // NOI18N
         lblTitulo.setText("DIRECTORIO TELEFONICO UPS");
         desktopPane.add(lblTitulo);
-        lblTitulo.setBounds(140, 10, 450, 30);
+        lblTitulo.setBounds(70, 180, 450, 60);
 
-        menuBar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        menuBar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
         fileMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/iconos/power.png"))); // NOI18N
         fileMenu.setMnemonic('f');
@@ -233,15 +234,26 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void ocultar() {
+        agregarTelefono.setVisible(false);
+        inicioSesion.setVisible(false);
+        directorioGeneral.setVisible(false);
+        editarTelefono.setVisible(false);
+        misTelefonos.setVisible(false);
+        resgistrar.setVisible(false);
+    }
     private void mnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnIniciarSesionActionPerformed
+        ocultar();
         inicioSesion.setVisible(true);
     }//GEN-LAST:event_mnIniciarSesionActionPerformed
 
     private void mnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnRegistrarseActionPerformed
+        ocultar();
         resgistrar.setVisible(true);
     }//GEN-LAST:event_mnRegistrarseActionPerformed
 
     private void mnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnCerrarSesionActionPerformed
+        ocultar();
         mnAgregarTelefono.setEnabled(false);
         mnEditarTelefono.setEnabled(false);
         mnMisTelefonos.setEnabled(false);
@@ -253,10 +265,12 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
     }//GEN-LAST:event_mnCerrarSesionActionPerformed
 
     private void mnAgregarTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnAgregarTelefonoActionPerformed
+        ocultar();
         agregarTelefono.setVisible(true);
     }//GEN-LAST:event_mnAgregarTelefonoActionPerformed
 
     private void mnDirectorioGeneralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnDirectorioGeneralActionPerformed
+        ocultar();
         directorioGeneral.setVisible(true);
     }//GEN-LAST:event_mnDirectorioGeneralActionPerformed
 
@@ -265,10 +279,12 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
     }//GEN-LAST:event_mnSalirPActionPerformed
 
     private void mnEditarTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnEditarTelefonoActionPerformed
+        ocultar();
         editarTelefono.setVisible(true);
     }//GEN-LAST:event_mnEditarTelefonoActionPerformed
 
     private void mnMisTelefonosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnMisTelefonosActionPerformed
+        ocultar();
         misTelefonos.setVisible(true);
     }//GEN-LAST:event_mnMisTelefonosActionPerformed
 

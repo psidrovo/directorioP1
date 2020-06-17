@@ -7,6 +7,7 @@ package ec.edu.ups.vista;
 
 import ec.edu.ups.controlador.ControladorTelefono;
 import ec.edu.ups.controlador.ControladorUsuario;
+import ec.edu.ups.modelo.Telefono;
 import javax.swing.JOptionPane;
 
 /**
@@ -49,7 +50,7 @@ public class VistaEditarTelefono extends javax.swing.JInternalFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
 
         cmbOperadora.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        cmbOperadora.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR", "MOVISTAR", "CLARO", "CNT", "TUENTI", "OTRO" }));
+        cmbOperadora.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR", "MOVISTAR", "CLARO", "CNT", "TUENTI", "ETAPA", "OTRO" }));
         cmbOperadora.setEnabled(false);
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
@@ -137,7 +138,7 @@ public class VistaEditarTelefono extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(140, 140, 140)
                 .addComponent(jLabel5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(157, 157, 157))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,18 +197,74 @@ public class VistaEditarTelefono extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtNumeroKeyTyped
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
-        txtCodigo.setEnabled(false);
-        txtNumero.setEnabled(true);
-        cmbTipo.setEnabled(true);
-        cmbOperadora.setEnabled(true);
+
+        Telefono editarTelefono = controladorTelefono.verTelefono(Integer.valueOf(txtCodigo.getText()));
+
+        if (editarTelefono != null) {
+            txtCodigo.setEnabled(false);
+            txtNumero.setEnabled(true);
+            cmbTipo.setEnabled(true);
+            cmbOperadora.setEnabled(true);
+            txtNumero.setText(editarTelefono.getNumero());
+            btGuardar.setEnabled(true);
+            btEditar.setEnabled(false);
+            System.out.println(cmbTipo.getItemAt(0));
+            switch (editarTelefono.getTipo()) {
+                case "MOVIL":
+                    cmbTipo.setSelectedIndex(2);
+                    break;
+                case "FIJO":
+                    cmbTipo.setSelectedIndex(1);
+                    break;
+                default:
+                    cmbTipo.setSelectedIndex(3);
+                    break;
+            }
+            switch (editarTelefono.getOperadora()) {
+                case "MOVISTAR":
+                    cmbOperadora.setSelectedIndex(1);
+                    break;
+                case "CLARO":
+                    cmbOperadora.setSelectedIndex(2);
+                    break;
+                case "CNT":
+                    cmbOperadora.setSelectedIndex(3);
+                    break;
+                case "TUENTI":
+                    cmbOperadora.setSelectedIndex(4);
+                    break;
+                case "ETAPA":
+                    cmbOperadora.setSelectedIndex(5);
+                    break;
+                default:
+                    cmbOperadora.setSelectedIndex(6);
+                    break;
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "NO EXISTE NINGUN NUMERO CON ESE CODIGO", "ERROR DE DATOS", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btEditarActionPerformed
 
     private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGuardarActionPerformed
-        JOptionPane.showMessageDialog(null, "TELEFONO AGREGADO CORRECTAMENTE", "AGREGADO", JOptionPane.INFORMATION_MESSAGE);
-        txtCodigo.setText("");
-        txtNumero.setText("");
-        cmbTipo.setSelectedIndex(0);
-        cmbOperadora.setSelectedIndex(0);
+        if (txtCodigo.getText().equals("") || txtNumero.getText().equals("")
+                || cmbTipo.getSelectedItem().toString().equals("SELECCIONAR") || cmbOperadora.getSelectedItem().toString().equals("SELECCIONAR")) {
+            JOptionPane.showMessageDialog(null, "LLENE TODOS LOS CAMPOS", "EDITAR", JOptionPane.ERROR_MESSAGE);
+        } else {
+            controladorUsuario.actualizarTelefono(Integer.valueOf(txtCodigo.getText()), txtNumero.getText(),
+                    cmbTipo.getSelectedItem().toString(), cmbOperadora.getSelectedItem().toString());
+
+            JOptionPane.showMessageDialog(null, "TELEFONO AGREGADO CORRECTAMENTE", "AGREGADO", JOptionPane.INFORMATION_MESSAGE);
+            txtCodigo.setText("");
+            txtNumero.setText("");
+            cmbTipo.setSelectedIndex(0);
+            cmbOperadora.setSelectedIndex(0);
+            txtCodigo.setEnabled(true);
+            txtNumero.setEnabled(false);
+            cmbTipo.setEnabled(false);
+            cmbOperadora.setEnabled(false);
+            btGuardar.setEnabled(false);
+            btEditar.setEnabled(true);
+        }
     }//GEN-LAST:event_btGuardarActionPerformed
 
 

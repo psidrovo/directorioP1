@@ -48,6 +48,9 @@ public class VistaRegistrar extends javax.swing.JInternalFrame {
         pwsConfirmar = new javax.swing.JPasswordField();
         btRegistrar = new javax.swing.JButton();
 
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel1.setText("REGISTRAR");
 
@@ -182,10 +185,17 @@ public class VistaRegistrar extends javax.swing.JInternalFrame {
         }
         if (confirmar.equals(password)) {
 
-            if (txtNombre.getText().equals("") && password.equals("") && txtApellido.getText().equals("") && txtCedula.getText().equals("") && txtCorreo.getText().endsWith("")) {
+            if (txtNombre.getText().equals("") || password.equals("") || txtApellido.getText().equals("") || txtCedula.getText().equals("") || txtCorreo.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "LLENE TODOS LOS CAMPOS", "ERROR", JOptionPane.ERROR_MESSAGE);
             } else {
+                controladorUsuario.registrar(txtCedula.getText(), txtNombre.getText(), txtApellido.getText(), txtCorreo.getText(), password);
                 this.setVisible(false);
+                txtApellido.setText("");
+                txtCedula.setText("");
+                txtCorreo.setText("");
+                txtNombre.setText("");
+                pwsConfirmar.setText("");
+                pwsPassword.setText("");
                 JOptionPane.showMessageDialog(null, "REGISTRO EXITOSO", "REGISTRO", JOptionPane.INFORMATION_MESSAGE);
             }
         } else {

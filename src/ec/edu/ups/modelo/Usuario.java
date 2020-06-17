@@ -21,7 +21,7 @@ public class Usuario {
         directorio=new ArrayList<Telefono>();
     }
 
-    public Usuario(String cedula, String nombre, String apellido, String correo, String contrasena, List<Telefono> directorio) {
+    public Usuario(String cedula, String nombre, String apellido, String correo, String contrasena) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;

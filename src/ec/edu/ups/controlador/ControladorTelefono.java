@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class ControladorTelefono {
 
-    private TelefonoDao TDao;
+    private TelefonoDao telefonoDao;
     private Telefono telefono;
     
     public ControladorTelefono() {
@@ -30,7 +30,7 @@ public class ControladorTelefono {
      * @param telefonoDao 
      */
     public ControladorTelefono(TelefonoDao telefonoDao) {   
-        this.TDao=telefonoDao;
+        this.telefonoDao=telefonoDao;
     }
     
     /**
@@ -41,9 +41,9 @@ public class ControladorTelefono {
      * 
      * @return 
      */
-    public int crearNuevoTelefono() {
-        TDao.create(telefono);
-        return telefono.getCodigo();
+    public void crearNuevoTelefono(int codigo, String numero, String tipo, String operadora) {
+        telefono=new Telefono(codigo, numero, tipo, operadora);
+        telefonoDao.create(telefono);        
     }
 
     /**
@@ -52,10 +52,9 @@ public class ControladorTelefono {
      * Este metodo nos imprime el telefno con el codigo que le pasamos
      * 
      */
-    public void verTelefono() {
-        //int codigo = vistaTelefono.buscarTelefono();
-        telefono = TDao.read(0);
-       // vistaTelefono.visualizarTelefono(telefono);
+    public Telefono verTelefono(int codigo) {
+        telefono = telefonoDao.read(codigo);
+        return telefono;
     }
 
     /**
@@ -65,33 +64,34 @@ public class ControladorTelefono {
      * 
      * @return 
      */
-    public int actualizar() {
-        //telefono = vistaTelefono.editarTelefono();
-        TDao.update(telefono);
-        return telefono.getCodigo();
+    /*
+    public void actualizar(int codigo, String numero, String tipo, String operadora) {
+        telefono = new Telefono(codigo, numero, tipo, operadora);
+        telefonoDao.update(telefono);
     }
-
+    */
     /**
      * Metodo eliminar.
      * 
      * Este metodo es llamada para eliminar un telefono del directorio.
      * 
      * @return 
-     */
-    public int eliminar() {
+     *//*
+    public int eliminar(int codigo) {
         //telefono = vistaTelefono.eliminarTelefono();
-        TDao.delete(telefono.getCodigo());
+        telefonoDao.delete(codigo);
         return telefono.getCodigo();
     }
-
+*/
     /**
      * Metodo verTelefonos.
      * 
      * Este metodo nos ayuda a imprimir la lista de telefonos.
      */
-    public void verTelefonos() {
+    public List<Telefono> verTelefonos() {
         List<Telefono> telefonos;
-        telefonos = TDao.todosTelefonos();
-        //vistaTelefono.verTelefonos(telefonos);
+        telefonos = telefonoDao.todosTelefonos();
+        return telefonos;
     }
+
 }

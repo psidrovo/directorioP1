@@ -7,6 +7,9 @@ package ec.edu.ups.vista;
 
 import ec.edu.ups.controlador.ControladorTelefono;
 import ec.edu.ups.controlador.ControladorUsuario;
+import ec.edu.ups.modelo.Telefono;
+import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -40,12 +43,21 @@ public class VistaDirectorioGeneral extends javax.swing.JInternalFrame {
         lstTelefonos = new javax.swing.JList<>();
         txtDatoBusqueda = new javax.swing.JTextField();
         lblTitulo = new javax.swing.JLabel();
+        btListarTodos = new javax.swing.JButton();
+
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
 
         cmdTipoDato.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         cmdTipoDato.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR TIPO", "CORREO", "CEDULA" }));
 
         btBuscar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         btBuscar.setText("BUSCAR");
+        btBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBuscarActionPerformed(evt);
+            }
+        });
 
         lstTelefonos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "LISTA DE TELEFONOS", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 14))); // NOI18N
         lstTelefonos.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
@@ -64,6 +76,14 @@ public class VistaDirectorioGeneral extends javax.swing.JInternalFrame {
         lblTitulo.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         lblTitulo.setText("DIRECTORIO GENERAL");
 
+        btListarTodos.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        btListarTodos.setText("TODO DIRECTORIO");
+        btListarTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btListarTodosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -71,19 +91,23 @@ public class VistaDirectorioGeneral extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(224, 224, 224)
+                        .addComponent(lblTitulo))
+                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 703, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20)
+                                .addComponent(btListarTodos))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(cmdTipoDato, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(27, 27, 27)
                                 .addComponent(txtDatoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(47, 47, 47)
-                                .addComponent(btBuscar))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 674, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(224, 224, 224)
-                        .addComponent(lblTitulo)))
-                .addGap(10, 10, 10))
+                                .addComponent(btBuscar)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -95,9 +119,15 @@ public class VistaDirectorioGeneral extends javax.swing.JInternalFrame {
                     .addComponent(cmdTipoDato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btBuscar)
                     .addComponent(txtDatoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(169, 169, 169)
+                        .addComponent(btListarTodos)
+                        .addGap(230, 230, 230))))
         );
 
         pack();
@@ -114,9 +144,34 @@ public class VistaDirectorioGeneral extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtDatoBusquedaKeyTyped
 
+    private void btListarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListarTodosActionPerformed
+        List<Telefono> listaTelefonos = controladorTelefono.verTelefonos();
+        DefaultListModel modelo = new DefaultListModel();
+
+        for (Telefono telefono : listaTelefonos) {
+            modelo.addElement(telefono.toString());
+        }
+        lstTelefonos.setModel(modelo);
+    }//GEN-LAST:event_btListarTodosActionPerformed
+
+    private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
+        if (cmdTipoDato.getSelectedItem().toString().equals("SELECCIONAR TIPO")) {
+            JOptionPane.showMessageDialog(null, "SELECIONE EL TIPO DE DATO", "ERROR DE DATOS", JOptionPane.WARNING_MESSAGE);
+        } else {
+            List<Telefono> listaTelefonos = controladorUsuario.verTelefonosGeneralUsuario(txtDatoBusqueda.getText(), cmdTipoDato.getSelectedItem().toString());
+            DefaultListModel modelo = new DefaultListModel();
+
+            for (Telefono telefono : listaTelefonos) {
+                modelo.addElement(telefono.toString());
+            }
+            lstTelefonos.setModel(modelo);
+        }
+    }//GEN-LAST:event_btBuscarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btBuscar;
+    private javax.swing.JButton btListarTodos;
     private javax.swing.JComboBox<String> cmdTipoDato;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTitulo;

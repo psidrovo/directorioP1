@@ -38,11 +38,23 @@ public class UsuarioDao implements IUsuario{
     }
 
     @Override
-    public Usuario telefonos(String correo) {
+    public Usuario telefonosCorreo(String correo) {
         Iterator it = mapaUsuario.values().iterator();
         while(it.hasNext()){
             Usuario us = (Usuario) it.next();
             if(us.getCorreo().equals(correo)){
+                return us;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public Usuario telefonosCedula(String cedula) {
+        Iterator it = mapaUsuario.values().iterator();
+        while(it.hasNext()){
+            Usuario us = (Usuario) it.next();
+            if(us.getCedula().equals(cedula)){
                 return us;
             }
         }

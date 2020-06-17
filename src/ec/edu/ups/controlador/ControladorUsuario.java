@@ -6,6 +6,7 @@ import ec.edu.ups.idao.ITelefono;
 import ec.edu.ups.idao.IUsuario;
 import ec.edu.ups.modelo.Telefono;
 import ec.edu.ups.modelo.Usuario;
+import java.util.List;
 
 /**
  * Clase ControladorUsuario.
@@ -19,8 +20,8 @@ import ec.edu.ups.modelo.Usuario;
  */
 public class ControladorUsuario {
 
-    private IUsuario UDao;
-    private ITelefono TDao;
+    private IUsuario usuarioDao;
+    private ITelefono telefonoDao;
     private Telefono telefono;
     private Usuario usuario;
 
@@ -38,8 +39,8 @@ public class ControladorUsuario {
      * @param telefonoDao - objeto tipo TelefonoDao
      */
     public ControladorUsuario(UsuarioDao usuarioDao, TelefonoDao telefonoDao) {
-        this.UDao = usuarioDao;
-        this.TDao = telefonoDao;
+        this.usuarioDao = usuarioDao;
+        this.telefonoDao = telefonoDao;
     }
 
     /**
@@ -52,8 +53,9 @@ public class ControladorUsuario {
      *
      * @see UsuarioDao
      */
-    public void registrar(Usuario usuario) {
-        UDao.create(usuario);
+    public void registrar(String cedula, String nombre, String apellido, String correo, String contrasena) {
+        Usuario registroUsuario = new Usuario(cedula, nombre, apellido, correo, contrasena);
+        usuarioDao.create(registroUsuario);
     }
 
     /**
@@ -72,7 +74,7 @@ public class ControladorUsuario {
      */
     //llama al DAO para Iniciar sesion
     public Usuario inicioSesion(String credenciales) {
-        usuario = UDao.read(credenciales);
+        usuario = usuarioDao.read(credenciales);
         if (usuario != null) {
             return usuario;
         }
@@ -93,10 +95,11 @@ public class ControladorUsuario {
      * @see Usuario
      * @see UsuarioDao
      */
-    public void agregarTelefono(int codigo) {
-        telefono = TDao.read(codigo);
+    public void agregarTelefono(int codigo, String numero, String tipo, String operadora) {
+        telefono = new Telefono(codigo, numero, tipo, operadora);
+        telefonoDao.create(telefono);
         usuario.agregarTelefono(telefono);
-        UDao.update(usuario);
+        usuarioDao.update(usuario);
     }
 
     /**
@@ -108,10 +111,11 @@ public class ControladorUsuario {
      *
      * @param codigo
      */
-    public void actualizarTelefono(int codigo) {
-        telefono = TDao.read(codigo);
+    public void actualizarTelefono(int codigo, String numero, String tipo, String operadora) {
+        telefono = new Telefono(codigo, numero, tipo, operadora);
         usuario.actualizarTelefono(telefono);
-        UDao.update(usuario);
+        telefonoDao.update(telefono);
+        usuarioDao.update(usuario);
     }
 
     /**
@@ -124,7 +128,8 @@ public class ControladorUsuario {
      */
     public void eliminarTelefono(int codigo) {
         usuario.eliminarTelefono(codigo);
-        UDao.update(usuario);
+        usuarioDao.update(usuario);
+        telefonoDao.delete(codigo);
     }
 
     /**
@@ -145,8 +150,8 @@ public class ControladorUsuario {
      * Usuario.
      *
      */
-    public Usuario verTelefonos() {
-        return usuario;
+    public List<Telefono> verTelefonos() {
+        return usuario.getDirectorio();
     }
 
     /**
@@ -155,13 +160,18 @@ public class ControladorUsuario {
      * Este metodo imprime los contactos que pertenescan al usuario que
      * validamos unicamente con el correo
      */
-    public Usuario verTelefonosCorreo(String credencial) {
-        usuario = UDao.telefonos(credencial);
+    public List<Telefono> verTelefonosGeneralUsuario(String credencial, String tipo) {
+        if(tipo.equals("CEDULA")){
+            usuario=usuarioDao.telefonosCedula(credencial);
+        }else{
+            usuario = usuarioDao.telefonosCorreo(credencial);
+        }
         if (usuario != null) {
-            return verTelefonos();
+            return usuario.getDirectorio();
         }
         return null;
     }
+    
 
     /**
      * Metodo verUsuario.
@@ -169,7 +179,7 @@ public class ControladorUsuario {
      * Este metodo nos imprime los datos del Usuario
      */
     public Usuario verUsuario() {
-       return usuario;
+        return usuario;
     }
 
 }

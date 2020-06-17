@@ -7,6 +7,9 @@ package ec.edu.ups.vista;
 
 import ec.edu.ups.controlador.ControladorTelefono;
 import ec.edu.ups.controlador.ControladorUsuario;
+import ec.edu.ups.modelo.Telefono;
+import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -36,11 +39,14 @@ public class VistaMisTelefonos extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         lstTelefonos = new javax.swing.JList<>();
         btBuscar = new javax.swing.JButton();
-        txtDatoBusqueda = new javax.swing.JTextField();
+        txtCodigo = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         btListarTodos = new javax.swing.JButton();
         btListarTodos1 = new javax.swing.JButton();
         lblTitulo = new javax.swing.JLabel();
+
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
 
         lstTelefonos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "LISTA DE TELEFONOS", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 14))); // NOI18N
         lstTelefonos.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
@@ -51,11 +57,16 @@ public class VistaMisTelefonos extends javax.swing.JInternalFrame {
 
         btBuscar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         btBuscar.setText("BUSCAR");
+        btBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBuscarActionPerformed(evt);
+            }
+        });
 
-        txtDatoBusqueda.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        txtDatoBusqueda.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtCodigo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtDatoBusquedaKeyTyped(evt);
+                txtCodigoKeyTyped(evt);
             }
         });
 
@@ -64,9 +75,19 @@ public class VistaMisTelefonos extends javax.swing.JInternalFrame {
 
         btListarTodos.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         btListarTodos.setText("LISTAR MI DIRECTORIO");
+        btListarTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btListarTodosActionPerformed(evt);
+            }
+        });
 
         btListarTodos1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         btListarTodos1.setText("ELIMINAR TELEFONO");
+        btListarTodos1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btListarTodos1ActionPerformed(evt);
+            }
+        });
 
         lblTitulo.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         lblTitulo.setText("MI DIRECTORIO");
@@ -81,7 +102,7 @@ public class VistaMisTelefonos extends javax.swing.JInternalFrame {
                         .addGap(19, 19, 19)
                         .addComponent(jLabel1)
                         .addGap(29, 29, 29)
-                        .addComponent(txtDatoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btBuscar))
                     .addGroup(layout.createSequentialGroup()
@@ -104,7 +125,7 @@ public class VistaMisTelefonos extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtDatoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btBuscar))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,14 +141,51 @@ public class VistaMisTelefonos extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtDatoBusquedaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDatoBusquedaKeyTyped
+    private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
         char validar = evt.getKeyChar();
         int asscii = (int) validar;
         if (!Character.isDigit(validar) && asscii != 8) {
             evt.consume();
             JOptionPane.showMessageDialog(null, "INGRESE SOLO NUMEROS", "ERROR DE DATOS", JOptionPane.WARNING_MESSAGE);
         }
-    }//GEN-LAST:event_txtDatoBusquedaKeyTyped
+    }//GEN-LAST:event_txtCodigoKeyTyped
+
+    private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
+        Telefono telefonoBuscado = controladorTelefono.verTelefono(Integer.valueOf(txtCodigo.getText()));
+        DefaultListModel modelo = new DefaultListModel();
+        modelo.addElement(telefonoBuscado.toString());
+        lstTelefonos.setModel(modelo);
+    }//GEN-LAST:event_btBuscarActionPerformed
+
+    private void btListarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListarTodosActionPerformed
+        List<Telefono> listaTelefonos = controladorUsuario.verTelefonos();
+        DefaultListModel modelo = new DefaultListModel();
+        
+        for (Telefono telefono : listaTelefonos) {
+            modelo.addElement(telefono.toString());
+        }
+        lstTelefonos.setModel(modelo);
+    }//GEN-LAST:event_btListarTodosActionPerformed
+
+    private void btListarTodos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListarTodos1ActionPerformed
+        int confirmar = JOptionPane.showConfirmDialog(null,"ELIMINAR EL TELEFONO SELECCIONADO?");
+
+        if (JOptionPane.OK_OPTION == confirmar) {
+            String telefonoEliminar = lstTelefonos.getSelectedValue();
+            int inicio = telefonoEliminar.indexOf("codigo: ")+8;
+            int fin = telefonoEliminar.indexOf(" numero:");        
+            controladorUsuario.eliminarTelefono(Integer.valueOf(telefonoEliminar.substring(inicio, fin)));
+
+            List<Telefono> listaTelefonos = controladorTelefono.verTelefonos();
+            DefaultListModel modelo = new DefaultListModel();
+
+            for (Telefono telefono : listaTelefonos) {
+                modelo.addElement(telefono.toString());
+            }
+            lstTelefonos.setModel(modelo);
+        }
+        
+    }//GEN-LAST:event_btListarTodos1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -138,6 +196,6 @@ public class VistaMisTelefonos extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JList<String> lstTelefonos;
-    private javax.swing.JTextField txtDatoBusqueda;
+    private javax.swing.JTextField txtCodigo;
     // End of variables declaration//GEN-END:variables
 }

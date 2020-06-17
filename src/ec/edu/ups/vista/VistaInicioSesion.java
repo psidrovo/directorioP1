@@ -7,6 +7,7 @@ package ec.edu.ups.vista;
 
 import ec.edu.ups.controlador.ControladorTelefono;
 import ec.edu.ups.controlador.ControladorUsuario;
+import ec.edu.ups.modelo.Usuario;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
@@ -24,11 +25,12 @@ public class VistaInicioSesion extends javax.swing.JInternalFrame {
     private JMenuItem mnSalir;
     private JMenuItem mnRegistrarse;
     private JMenuItem mnEliminarTelefono;
+    private JMenuItem mnCerrarSesion;
     private ControladorTelefono controladorTelefono;
     private ControladorUsuario controladorUsuario;
     private JLabel lblUsuarioLogin;
 
-    public VistaInicioSesion(JMenuItem mnAgregarTelefono, JMenuItem mnEditarTelefono, JMenuItem mnMisTelefonos, JMenuItem mnIniciarSesion,
+    public VistaInicioSesion(JMenuItem mnAgregarTelefono, JMenuItem mnEditarTelefono, JMenuItem mnMisTelefonos, JMenuItem mnIniciarSesion,JMenuItem mnCerrarSesion,
             JMenuItem mnSalir, JMenuItem mnRegistrarse, JMenuItem mnEliminarTelefono, ControladorUsuario controladorUsuario, ControladorTelefono controladorTelefono, JLabel lblUsuarioLogin) {
 
         initComponents();
@@ -44,6 +46,7 @@ public class VistaInicioSesion extends javax.swing.JInternalFrame {
         this.mnSalir = mnSalir;
         this.mnRegistrarse = mnRegistrarse;
         this.lblUsuarioLogin = lblUsuarioLogin;
+        this.mnCerrarSesion=mnCerrarSesion;
         this.setResizable(false);
     }
 
@@ -70,14 +73,14 @@ public class VistaInicioSesion extends javax.swing.JInternalFrame {
 
         lblUsuario.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         lblUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/iconos/usuario.png"))); // NOI18N
-        lblUsuario.setText("USUARIO:");
+        lblUsuario.setText("CORREO");
 
         lblTitulo.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         lblTitulo.setText("    INICIO DE SESION");
 
         lblContraseña.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         lblContraseña.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/iconos/contraseña.png"))); // NOI18N
-        lblContraseña.setText("CONTRASEÑA:");
+        lblContraseña.setText("CONTRASEÑA");
 
         pswContraseña.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         pswContraseña.setMinimumSize(new java.awt.Dimension(90, 30));
@@ -102,20 +105,23 @@ public class VistaInicioSesion extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(66, 66, 66)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(btIniciar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblTitulo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblContraseña))
-                        .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pswContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(90, 90, 90))
+                            .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblContraseña))
+                                .addGap(23, 23, 23)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                                    .addComponent(pswContraseña, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(76, 76, 76)
+                        .addComponent(btIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(50, 50, 50))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,14 +147,14 @@ public class VistaInicioSesion extends javax.swing.JInternalFrame {
     private void btIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIniciarActionPerformed
         // TODO add your handling code here:
 
-        String contraseñaDeco = "";
+        String passwordDeco = "";
         char[] password = pswContraseña.getPassword();
         for (int x = 0; x < password.length; x++) {
-            contraseñaDeco += password[x];
+            passwordDeco += password[x];
         }
-
-        if (txtUsuario.getText().equals("admin") && contraseñaDeco.equals("1234")) {
-
+        
+        Usuario inicioSesion = controladorUsuario.inicioSesion(txtUsuario.getText()+passwordDeco);
+        if (inicioSesion!=null) {            
             mnAgregarTelefono.setEnabled(true);
             mnEditarTelefono.setEnabled(true);
             mnMisTelefonos.setEnabled(true);
@@ -156,8 +162,11 @@ public class VistaInicioSesion extends javax.swing.JInternalFrame {
             mnIniciarSesion.setEnabled(false);
             mnSalir.setEnabled(true);
             mnRegistrarse.setEnabled(false);
+            mnCerrarSesion.setEnabled(true);
+            txtUsuario.setText("");
+            pswContraseña.setText("");
             this.setVisible(false);
-            lblUsuarioLogin.setText(txtUsuario.getText().toUpperCase());
+            lblUsuarioLogin.setText("BIENVENIDO "+inicioSesion.getNombre().toUpperCase()+" "+inicioSesion.getApellido().toUpperCase());
             JOptionPane.showMessageDialog(null, "INICIO DE SESION CORRECTO", "LOGIN", JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(null, "USUARIO Y/O CONTRASEÑA INCORRECTOS", "ERROR", JOptionPane.ERROR_MESSAGE);

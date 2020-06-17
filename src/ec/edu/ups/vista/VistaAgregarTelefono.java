@@ -17,13 +17,12 @@ public class VistaAgregarTelefono extends javax.swing.JInternalFrame {
 
     private ControladorUsuario controladorUsuario;
     private ControladorTelefono controladorTelefono;
-    
+
     public VistaAgregarTelefono(ControladorUsuario controladorUsuario, ControladorTelefono controladorTelefono) {
         initComponents();
-        this.controladorUsuario=controladorUsuario;
-        this.controladorTelefono=controladorTelefono;
+        this.controladorUsuario = controladorUsuario;
+        this.controladorTelefono = controladorTelefono;
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -46,6 +45,7 @@ public class VistaAgregarTelefono extends javax.swing.JInternalFrame {
         btAgregar = new javax.swing.JButton();
 
         setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabel1.setText("NUMERO");
@@ -77,7 +77,7 @@ public class VistaAgregarTelefono extends javax.swing.JInternalFrame {
         cmbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR", "FIJO", "MOVIL", "OTRO" }));
 
         cmbOperadora.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        cmbOperadora.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR", "MOVISTAR", "CLARO", "CNT", "TUENTI", "OTRO" }));
+        cmbOperadora.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR", "MOVISTAR", "CLARO", "CNT", "TUENTI", "ETAPA", "OTRO" }));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setText("AGREGAR TELEFONO");
@@ -164,7 +164,7 @@ public class VistaAgregarTelefono extends javax.swing.JInternalFrame {
     private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
         char validar = evt.getKeyChar();
         int asscii = (int) validar;
-        if (!Character.isDigit(validar) && asscii!=8 ) {
+        if (!Character.isDigit(validar) && asscii != 8) {
             evt.consume();
             JOptionPane.showMessageDialog(null, "INGRESE SOLO NUMEROS", "ERROR DE DATOS", JOptionPane.WARNING_MESSAGE);
         }
@@ -180,11 +180,19 @@ public class VistaAgregarTelefono extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtNumeroKeyTyped
 
     private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarActionPerformed
-        JOptionPane.showMessageDialog(null, "TELEFONO AGREGADO CORRECTAMENTE", "AGREGADO", JOptionPane.INFORMATION_MESSAGE);
-        txtCodigo.setText("");
-        txtNumero.setText("");
-        cmbTipo.setSelectedIndex(0);
-        cmbOperadora.setSelectedIndex(0);
+        System.out.println(cmbTipo.getSelectedItem().toString());
+        if (txtCodigo.getText().equals("") || txtNumero.getText().equals("")
+                || cmbTipo.getSelectedItem().toString().equals("SELECCIONAR") || cmbOperadora.getSelectedItem().toString().equals("SELECCIONAR")) {
+            JOptionPane.showMessageDialog(null, "LLENE TODOS LOS CAMPOS", "AGREGADO", JOptionPane.ERROR_MESSAGE);
+        } else {     
+            controladorUsuario.agregarTelefono(Integer.valueOf(txtCodigo.getText()),txtNumero.getText(),
+                    cmbTipo.getSelectedItem().toString(),cmbOperadora.getSelectedItem().toString());
+            JOptionPane.showMessageDialog(null, "TELEFONO AGREGADO CORRECTAMENTE", "AGREGADO", JOptionPane.INFORMATION_MESSAGE);
+            txtCodigo.setText("");
+            txtNumero.setText("");
+            cmbTipo.setSelectedIndex(0);
+            cmbOperadora.setSelectedIndex(0);
+        }
     }//GEN-LAST:event_btAgregarActionPerformed
 
 
