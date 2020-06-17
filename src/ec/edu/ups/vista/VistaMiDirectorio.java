@@ -56,7 +56,6 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
         txtCodigoEditar = new javax.swing.JTextField();
         cmbTipoEditar = new javax.swing.JComboBox<>();
-        btEditar = new javax.swing.JButton();
         btGuardar = new javax.swing.JButton();
         cmbOperadoraEditar = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
@@ -125,30 +124,27 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(44, 44, 44)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(127, 127, 127)
-                        .addComponent(btAgregar)
-                        .addGap(205, 205, 205))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3))
-                                .addGap(81, 81, 81)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtCodigo)
-                                    .addComponent(cmbTipo, 0, 261, Short.MAX_VALUE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel1))
-                                .addGap(53, 53, 53)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cmbOperadora, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtNumero))))
-                        .addGap(56, 56, 56))))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGap(81, 81, 81)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCodigo)
+                            .addComponent(cmbTipo, 0, 261, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel1))
+                        .addGap(53, 53, 53)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btAgregar)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(cmbOperadora, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtNumero))))
+                .addGap(56, 56, 56))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,25 +153,25 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCodigo)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
+                        .addGap(0, 0, 0)
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)))
-                .addGap(10, 10, 10)
+                .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cmbTipo))
-                .addGap(17, 17, 17)
+                .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
                     .addComponent(txtNumero))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
+                        .addGap(0, 0, 0)
                         .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE))
                     .addComponent(cmbOperadora))
-                .addGap(20, 20, 20)
+                .addGap(15, 15, 15)
                 .addComponent(btAgregar)
-                .addContainerGap())
+                .addGap(15, 15, 15))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "EDITAR TELEFONO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14))); // NOI18N
@@ -185,6 +181,7 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
         jLabel9.setText("OPERADORA");
 
         txtCodigoEditar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        txtCodigoEditar.setEnabled(false);
         txtCodigoEditar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCodigoEditarKeyTyped(evt);
@@ -195,17 +192,8 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
         cmbTipoEditar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR", "FIJO", "MOVIL", "OTRO" }));
         cmbTipoEditar.setEnabled(false);
 
-        btEditar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        btEditar.setText("EDITAR");
-        btEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btEditarActionPerformed(evt);
-            }
-        });
-
         btGuardar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         btGuardar.setText("GUARDAR");
-        btGuardar.setEnabled(false);
         btGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btGuardarActionPerformed(evt);
@@ -240,63 +228,44 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
                 .addGap(41, 41, 41)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel12)
-                    .addComponent(jLabel10))
-                .addGap(80, 80, 80)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel9))
+                .addGap(54, 54, 54)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cmbTipoEditar, 0, 247, Short.MAX_VALUE)
-                    .addComponent(txtNumeroEditar))
-                .addGap(40, 40, 40))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(41, 41, 41)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                            .addGap(2, 2, 2)
-                            .addComponent(jLabel11)
-                            .addGap(79, 79, 79)
-                            .addComponent(txtCodigoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(10, 10, 10)
-                            .addComponent(btEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                            .addComponent(jLabel9)
-                            .addGap(53, 53, 53)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(btGuardar)
-                                    .addGap(156, 156, 156))
-                                .addComponent(cmbOperadoraEditar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGap(41, 41, 41)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(btGuardar)
+                        .addGap(196, 196, 196))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cmbOperadoraEditar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cmbTipoEditar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtNumeroEditar)
+                            .addComponent(txtCodigoEditar, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(40, 40, 40))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(58, 58, 58)
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCodigoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbTipoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(15, 15, 15)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNumeroEditar))
-                .addGap(101, 101, 101))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtCodigoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGap(6, 6, 6)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(btEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(86, 86, 86)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGap(6, 6, 6)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(cmbOperadoraEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(20, 20, 20)
-                    .addComponent(btGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap()))
+                .addGap(15, 15, 15)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbOperadoraEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
+                .addComponent(btGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "DIRECTORIO PERSONAL", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14))); // NOI18N
@@ -322,6 +291,11 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tblDirectorio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDirectorioMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tblDirectorio);
@@ -365,18 +339,20 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtCodigoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addComponent(btBuscar))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btListarTodos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtCodigoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(31, 31, 31)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btListarTodos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(btBuscar)
+                        .addGap(76, 76, 76))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -387,9 +363,9 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(txtCodigoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btBuscar)
-                        .addGap(34, 34, 34)
+                        .addGap(29, 29, 29)
                         .addComponent(btListarTodos)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btEliminar)
@@ -420,7 +396,7 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -460,54 +436,6 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtCodigoEditarKeyTyped
 
-    private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
-
-        Telefono editarTelefono = controladorTelefono.verTelefono(Integer.valueOf(txtCodigoEditar.getText()));
-
-        if (editarTelefono != null) {
-            txtCodigoEditar.setEnabled(false);
-            txtNumeroEditar.setEnabled(true);
-            cmbTipoEditar.setEnabled(true);
-            cmbOperadoraEditar.setEnabled(true);
-            txtNumeroEditar.setText(editarTelefono.getNumero());
-            btGuardar.setEnabled(true);
-            btEditar.setEnabled(false);
-            switch (editarTelefono.getTipo()) {
-                case "MOVIL":
-                    cmbTipoEditar.setSelectedIndex(2);
-                    break;
-                case "FIJO":
-                    cmbTipoEditar.setSelectedIndex(1);
-                    break;
-                default:
-                    cmbTipoEditar.setSelectedIndex(3);
-                    break;
-            }
-            switch (editarTelefono.getOperadora()) {
-                case "MOVISTAR":
-                    cmbOperadoraEditar.setSelectedIndex(1);
-                    break;
-                case "CLARO":
-                    cmbOperadoraEditar.setSelectedIndex(2);
-                    break;
-                case "CNT":
-                    cmbOperadoraEditar.setSelectedIndex(3);
-                    break;
-                case "TUENTI":
-                    cmbOperadoraEditar.setSelectedIndex(4);
-                    break;
-                case "ETAPA":
-                    cmbOperadoraEditar.setSelectedIndex(5);
-                    break;
-                default:
-                    cmbOperadoraEditar.setSelectedIndex(6);
-                    break;
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "NO EXISTE NINGUN NUMERO CON ESE CODIGO", "ERROR DE DATOS", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_btEditarActionPerformed
-
     private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGuardarActionPerformed
         if (txtCodigoEditar.getText().equals("") || txtNumeroEditar.getText().equals("")
                 || cmbTipoEditar.getSelectedItem().toString().equals("SELECCIONAR") || cmbOperadoraEditar.getSelectedItem().toString().equals("SELECCIONAR")) {
@@ -526,7 +454,6 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
             cmbTipoEditar.setEnabled(false);
             cmbOperadoraEditar.setEnabled(false);
             btGuardar.setEnabled(false);
-            btEditar.setEnabled(true);
             ActualizarTabla();
         }
     }//GEN-LAST:event_btGuardarActionPerformed
@@ -535,7 +462,7 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
         ActualizarTabla();
     }//GEN-LAST:event_btListarTodosActionPerformed
 
-    public void ActualizarTabla(){
+    public void ActualizarTabla() {
         List<Telefono> listaTelefonos = controladorUsuario.verTelefonos();
 
         DefaultTableModel modelo = (DefaultTableModel) tblDirectorio.getModel();
@@ -600,11 +527,47 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNumeroEditarKeyTyped
 
+    private void tblDirectorioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDirectorioMouseClicked
+        int fila = tblDirectorio.getSelectedRow();
+        txtCodigoEditar.setText(tblDirectorio.getValueAt(fila, 0).toString());
+        txtNumeroEditar.setText(tblDirectorio.getValueAt(fila, 1).toString());
+        switch (tblDirectorio.getValueAt(fila, 2).toString()) {
+            case "MOVIL":
+                cmbTipoEditar.setSelectedIndex(2);
+                break;
+            case "FIJO":
+                cmbTipoEditar.setSelectedIndex(1);
+                break;
+            default:
+                cmbTipoEditar.setSelectedIndex(3);
+                break;
+        }
+        switch (tblDirectorio.getValueAt(fila, 3).toString()) {
+            case "MOVISTAR":
+                cmbOperadoraEditar.setSelectedIndex(1);
+                break;
+            case "CLARO":
+                cmbOperadoraEditar.setSelectedIndex(2);
+                break;
+            case "CNT":
+                cmbOperadoraEditar.setSelectedIndex(3);
+                break;
+            case "TUENTI":
+                cmbOperadoraEditar.setSelectedIndex(4);
+                break;
+            case "ETAPA":
+                cmbOperadoraEditar.setSelectedIndex(5);
+                break;
+            default:
+                cmbOperadoraEditar.setSelectedIndex(6);
+                break;
+        }
+    }//GEN-LAST:event_tblDirectorioMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAgregar;
     private javax.swing.JButton btBuscar;
-    private javax.swing.JButton btEditar;
     private javax.swing.JButton btEliminar;
     private javax.swing.JButton btGuardar;
     private javax.swing.JButton btListarTodos;
