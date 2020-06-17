@@ -23,9 +23,7 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
     //Vista
     private VistaInicioSesion inicioSesion;
     private VistaDirectorioGeneral directorioGeneral;
-    private VistaAgregarTelefono agregarTelefono;
-    private VistaEditarTelefono editarTelefono;
-    private VistaMisTelefonos misTelefonos;
+    private VistaMiDirectorio miDirectorio;
     private VistaRegistrar resgistrar;
     //Dao
     private TelefonoDao daoTelefono;
@@ -48,19 +46,15 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
         controladorUsuario = new ControladorUsuario(daoUsuario, daoTelefono);
 
         //CREAR VISTAS
-        agregarTelefono = new VistaAgregarTelefono(controladorUsuario, controladorTelefono);
-        inicioSesion = new VistaInicioSesion(mnAgregarTelefono, mnEditarTelefono, mnMisTelefonos, mnIniciarSesion, mnEliminarTelefono, mnCerrarSesion, mnRegistrarse, mnCerrarSesion, controladorUsuario, controladorTelefono, lblUsuarioLogin);
+        inicioSesion = new VistaInicioSesion(mnMisTelefonos, mnIniciarSesion, mnEliminarTelefono, mnCerrarSesion, mnRegistrarse, mnCerrarSesion, controladorUsuario, controladorTelefono, lblUsuarioLogin);
         directorioGeneral = new VistaDirectorioGeneral(controladorUsuario, controladorTelefono);
-        editarTelefono = new VistaEditarTelefono(controladorUsuario, controladorTelefono);
-        misTelefonos = new VistaMisTelefonos(controladorUsuario, controladorTelefono);
+        miDirectorio = new VistaMiDirectorio(controladorUsuario, controladorTelefono);
         resgistrar = new VistaRegistrar(controladorUsuario, controladorTelefono);
 
         //Agregar Panel
         desktopPane.add(inicioSesion);
         desktopPane.add(directorioGeneral);
-        desktopPane.add(agregarTelefono);
-        desktopPane.add(editarTelefono);
-        desktopPane.add(misTelefonos);
+        desktopPane.add(miDirectorio);
         desktopPane.add(resgistrar);
 
         //Posicion
@@ -88,8 +82,6 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
         mnSalirP = new javax.swing.JMenuItem();
         mnEliminarTelefono = new javax.swing.JMenu();
         mnDirectorioGeneral = new javax.swing.JMenuItem();
-        mnAgregarTelefono = new javax.swing.JMenuItem();
-        mnEditarTelefono = new javax.swing.JMenuItem();
         mnMisTelefonos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -152,7 +144,7 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
         });
         fileMenu.add(mnCerrarSesion);
 
-        mnSalirP.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_SPACE, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        mnSalirP.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         mnSalirP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/iconos/cerrar.png"))); // NOI18N
         mnSalirP.setMnemonic('s');
         mnSalirP.setText("Salir");
@@ -180,34 +172,10 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
         });
         mnEliminarTelefono.add(mnDirectorioGeneral);
 
-        mnAgregarTelefono.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        mnAgregarTelefono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/iconos/anadir (1).png"))); // NOI18N
-        mnAgregarTelefono.setMnemonic('y');
-        mnAgregarTelefono.setText("Agregar Telefono");
-        mnAgregarTelefono.setEnabled(false);
-        mnAgregarTelefono.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnAgregarTelefonoActionPerformed(evt);
-            }
-        });
-        mnEliminarTelefono.add(mnAgregarTelefono);
-
-        mnEditarTelefono.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        mnEditarTelefono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/iconos/editar-telefono.png"))); // NOI18N
-        mnEditarTelefono.setMnemonic('p');
-        mnEditarTelefono.setText("Editar Telefono");
-        mnEditarTelefono.setEnabled(false);
-        mnEditarTelefono.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnEditarTelefonoActionPerformed(evt);
-            }
-        });
-        mnEliminarTelefono.add(mnEditarTelefono);
-
         mnMisTelefonos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         mnMisTelefonos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/iconos/directorio-telefonico.png"))); // NOI18N
         mnMisTelefonos.setMnemonic('d');
-        mnMisTelefonos.setText("Ver mis telefonos");
+        mnMisTelefonos.setText("Directorio Personal");
         mnMisTelefonos.setEnabled(false);
         mnMisTelefonos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -235,11 +203,9 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ocultar() {
-        agregarTelefono.setVisible(false);
         inicioSesion.setVisible(false);
         directorioGeneral.setVisible(false);
-        editarTelefono.setVisible(false);
-        misTelefonos.setVisible(false);
+        miDirectorio.setVisible(false);
         resgistrar.setVisible(false);
     }
     private void mnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnIniciarSesionActionPerformed
@@ -254,8 +220,6 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
 
     private void mnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnCerrarSesionActionPerformed
         ocultar();
-        mnAgregarTelefono.setEnabled(false);
-        mnEditarTelefono.setEnabled(false);
         mnMisTelefonos.setEnabled(false);
         mnCerrarSesion.setEnabled(false);
         mnEliminarTelefono.setEnabled(false);
@@ -263,11 +227,6 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
         mnRegistrarse.setEnabled(true);
         lblUsuarioLogin.setText("BIENVENIDO");
     }//GEN-LAST:event_mnCerrarSesionActionPerformed
-
-    private void mnAgregarTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnAgregarTelefonoActionPerformed
-        ocultar();
-        agregarTelefono.setVisible(true);
-    }//GEN-LAST:event_mnAgregarTelefonoActionPerformed
 
     private void mnDirectorioGeneralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnDirectorioGeneralActionPerformed
         ocultar();
@@ -278,14 +237,9 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_mnSalirPActionPerformed
 
-    private void mnEditarTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnEditarTelefonoActionPerformed
-        ocultar();
-        editarTelefono.setVisible(true);
-    }//GEN-LAST:event_mnEditarTelefonoActionPerformed
-
     private void mnMisTelefonosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnMisTelefonosActionPerformed
         ocultar();
-        misTelefonos.setVisible(true);
+        miDirectorio.setVisible(true);
     }//GEN-LAST:event_mnMisTelefonosActionPerformed
 
     /**
@@ -336,10 +290,8 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblUsuarioLogin;
     private javax.swing.JMenuBar menuBar;
-    private javax.swing.JMenuItem mnAgregarTelefono;
     private javax.swing.JMenuItem mnCerrarSesion;
     private javax.swing.JMenuItem mnDirectorioGeneral;
-    private javax.swing.JMenuItem mnEditarTelefono;
     private javax.swing.JMenu mnEliminarTelefono;
     private javax.swing.JMenuItem mnIniciarSesion;
     private javax.swing.JMenuItem mnMisTelefonos;

@@ -18,8 +18,6 @@ import javax.swing.JOptionPane;
  */
 public class VistaInicioSesion extends javax.swing.JInternalFrame {
 
-    private JMenuItem mnAgregarTelefono;
-    private JMenuItem mnEditarTelefono;
     private JMenuItem mnMisTelefonos;
     private JMenuItem mnIniciarSesion;
     private JMenuItem mnSalir;
@@ -30,7 +28,7 @@ public class VistaInicioSesion extends javax.swing.JInternalFrame {
     private ControladorUsuario controladorUsuario;
     private JLabel lblUsuarioLogin;
 
-    public VistaInicioSesion(JMenuItem mnAgregarTelefono, JMenuItem mnEditarTelefono, JMenuItem mnMisTelefonos, JMenuItem mnIniciarSesion,JMenuItem mnCerrarSesion,
+    public VistaInicioSesion(JMenuItem mnMisTelefonos, JMenuItem mnIniciarSesion,JMenuItem mnCerrarSesion,
             JMenuItem mnSalir, JMenuItem mnRegistrarse, JMenuItem mnEliminarTelefono, ControladorUsuario controladorUsuario, ControladorTelefono controladorTelefono, JLabel lblUsuarioLogin) {
 
         initComponents();
@@ -38,8 +36,6 @@ public class VistaInicioSesion extends javax.swing.JInternalFrame {
         //ASIGNAR PARAMETROS
         this.controladorTelefono = controladorTelefono;
         this.controladorUsuario = controladorUsuario;
-        this.mnAgregarTelefono = mnAgregarTelefono;
-        this.mnEditarTelefono = mnEditarTelefono;
         this.mnMisTelefonos = mnMisTelefonos;
         this.mnEliminarTelefono = mnEliminarTelefono;
         this.mnIniciarSesion = mnIniciarSesion;
@@ -154,9 +150,7 @@ public class VistaInicioSesion extends javax.swing.JInternalFrame {
         }
         
         Usuario inicioSesion = controladorUsuario.inicioSesion(txtUsuario.getText()+passwordDeco);
-        if (inicioSesion!=null) {            
-            mnAgregarTelefono.setEnabled(true);
-            mnEditarTelefono.setEnabled(true);
+        if (inicioSesion!=null) {         
             mnMisTelefonos.setEnabled(true);
             mnEliminarTelefono.setEnabled(true);
             mnIniciarSesion.setEnabled(false);

@@ -47,6 +47,7 @@ public class VistaDirectorioGeneral extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+        setTitle("DIRECTORIO GENERAL");
 
         cmdTipoDato.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         cmdTipoDato.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR TIPO", "CORREO", "CEDULA" }));
@@ -106,7 +107,7 @@ public class VistaDirectorioGeneral extends javax.swing.JInternalFrame {
                                 .addComponent(txtDatoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(47, 47, 47)
                                 .addComponent(btBuscar)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGap(316, 316, 316)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
