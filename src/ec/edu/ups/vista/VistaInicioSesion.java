@@ -18,31 +18,17 @@ import javax.swing.JOptionPane;
  */
 public class VistaInicioSesion extends javax.swing.JInternalFrame {
 
-    private JMenuItem mnMisTelefonos;
-    private JMenuItem mnIniciarSesion;
-    private JMenuItem mnSalir;
-    private JMenuItem mnRegistrarse;
-    private JMenuItem mnEliminarTelefono;
-    private JMenuItem mnCerrarSesion;
     private ControladorTelefono controladorTelefono;
     private ControladorUsuario controladorUsuario;
-    private JLabel lblUsuarioLogin;
+    private VistaPrincipalApp vistaPrincipal;
 
-    public VistaInicioSesion(JMenuItem mnMisTelefonos, JMenuItem mnIniciarSesion,JMenuItem mnCerrarSesion,
-            JMenuItem mnSalir, JMenuItem mnRegistrarse, JMenuItem mnEliminarTelefono, ControladorUsuario controladorUsuario, ControladorTelefono controladorTelefono, JLabel lblUsuarioLogin) {
+    public VistaInicioSesion(VistaPrincipalApp vistaPrincipal, ControladorUsuario controladorUsuario, ControladorTelefono controladorTelefono) {
 
         initComponents();
-
         //ASIGNAR PARAMETROS
         this.controladorTelefono = controladorTelefono;
         this.controladorUsuario = controladorUsuario;
-        this.mnMisTelefonos = mnMisTelefonos;
-        this.mnEliminarTelefono = mnEliminarTelefono;
-        this.mnIniciarSesion = mnIniciarSesion;
-        this.mnSalir = mnSalir;
-        this.mnRegistrarse = mnRegistrarse;
-        this.lblUsuarioLogin = lblUsuarioLogin;
-        this.mnCerrarSesion=mnCerrarSesion;
+        this.vistaPrincipal = vistaPrincipal;
         this.setResizable(false);
     }
 
@@ -148,19 +134,18 @@ public class VistaInicioSesion extends javax.swing.JInternalFrame {
         for (int x = 0; x < password.length; x++) {
             passwordDeco += password[x];
         }
-        
-        Usuario inicioSesion = controladorUsuario.inicioSesion(txtUsuario.getText()+passwordDeco);
-        if (inicioSesion!=null) {         
-            mnMisTelefonos.setEnabled(true);
-            mnEliminarTelefono.setEnabled(true);
-            mnIniciarSesion.setEnabled(false);
-            mnSalir.setEnabled(true);
-            mnRegistrarse.setEnabled(false);
-            mnCerrarSesion.setEnabled(true);
+
+        Usuario inicioSesion = controladorUsuario.inicioSesion(txtUsuario.getText() + passwordDeco);
+        if (inicioSesion != null) {
+            vistaPrincipal.getMisTelefonos().setEnabled(true);
+            vistaPrincipal.getIniciarSesion().setEnabled(false);
+            vistaPrincipal.getSalir().setEnabled(true);
+            vistaPrincipal.getRegistrarse().setEnabled(false);
+            vistaPrincipal.getCerrarSesion().setEnabled(true);
             txtUsuario.setText("");
             pswContraseña.setText("");
             this.setVisible(false);
-            lblUsuarioLogin.setText("BIENVENIDO "+inicioSesion.getNombre().toUpperCase()+" "+inicioSesion.getApellido().toUpperCase());
+            vistaPrincipal.getBienvenido().setText("BIENVENIDO " + inicioSesion.getNombre().toUpperCase() + " " + inicioSesion.getApellido().toUpperCase());
             JOptionPane.showMessageDialog(null, "INICIO DE SESION CORRECTO", "LOGIN", JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(null, "USUARIO Y/O CONTRASEÑA INCORRECTOS", "ERROR", JOptionPane.ERROR_MESSAGE);

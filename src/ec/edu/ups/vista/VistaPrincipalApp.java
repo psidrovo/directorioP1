@@ -13,6 +13,9 @@ import ec.edu.ups.modelo.Usuario;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 /**
  *
@@ -46,7 +49,7 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
         controladorUsuario = new ControladorUsuario(daoUsuario, daoTelefono);
 
         //CREAR VISTAS
-        inicioSesion = new VistaInicioSesion(mnMisTelefonos, mnIniciarSesion, mnEliminarTelefono, mnCerrarSesion, mnRegistrarse, mnCerrarSesion, controladorUsuario, controladorTelefono, lblUsuarioLogin);
+        inicioSesion = new VistaInicioSesion(this, controladorUsuario, controladorTelefono);
         directorioGeneral = new VistaDirectorioGeneral(controladorUsuario, controladorTelefono);
         miDirectorio = new VistaMiDirectorio(controladorUsuario, controladorTelefono);
         resgistrar = new VistaRegistrar(controladorUsuario, controladorTelefono);
@@ -79,7 +82,7 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
         mnIniciarSesion = new javax.swing.JMenuItem();
         mnRegistrarse = new javax.swing.JMenuItem();
         mnCerrarSesion = new javax.swing.JMenuItem();
-        mnSalirP = new javax.swing.JMenuItem();
+        mnSalir = new javax.swing.JMenuItem();
         mnEliminarTelefono = new javax.swing.JMenu();
         mnDirectorioGeneral = new javax.swing.JMenuItem();
         mnMisTelefonos = new javax.swing.JMenuItem();
@@ -144,16 +147,16 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
         });
         fileMenu.add(mnCerrarSesion);
 
-        mnSalirP.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        mnSalirP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/iconos/cerrar.png"))); // NOI18N
-        mnSalirP.setMnemonic('s');
-        mnSalirP.setText("Salir");
-        mnSalirP.addActionListener(new java.awt.event.ActionListener() {
+        mnSalir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        mnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/iconos/cerrar.png"))); // NOI18N
+        mnSalir.setMnemonic('s');
+        mnSalir.setText("Salir");
+        mnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnSalirPActionPerformed(evt);
+                mnSalirActionPerformed(evt);
             }
         });
-        fileMenu.add(mnSalirP);
+        fileMenu.add(mnSalir);
 
         menuBar.add(fileMenu);
 
@@ -233,9 +236,9 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
         directorioGeneral.setVisible(true);
     }//GEN-LAST:event_mnDirectorioGeneralActionPerformed
 
-    private void mnSalirPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnSalirPActionPerformed
+    private void mnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnSalirActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_mnSalirPActionPerformed
+    }//GEN-LAST:event_mnSalirActionPerformed
 
     private void mnMisTelefonosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnMisTelefonosActionPerformed
         ocultar();
@@ -283,6 +286,29 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
         });
     }
 
+    public JMenuItem getMisTelefonos(){
+        return mnMisTelefonos;
+    }
+    public JMenuItem getIniciarSesion(){
+        return mnIniciarSesion;
+    }
+    public JMenuItem getCerrarSesion(){
+        return mnCerrarSesion;
+    }
+    public JMenuItem getSalir(){
+        return mnSalir;
+    }
+    public JMenuItem getRegistrarse(){
+        return mnRegistrarse;
+    }
+    public JMenuItem getDirectorioGeneral(){
+        return mnDirectorioGeneral;
+    }
+    public JLabel getBienvenido(){
+        return lblUsuarioLogin;
+    }
+        
+               
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenu fileMenu;
@@ -296,7 +322,7 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnIniciarSesion;
     private javax.swing.JMenuItem mnMisTelefonos;
     private javax.swing.JMenuItem mnRegistrarse;
-    private javax.swing.JMenuItem mnSalirP;
+    private javax.swing.JMenuItem mnSalir;
     // End of variables declaration//GEN-END:variables
 
 }
