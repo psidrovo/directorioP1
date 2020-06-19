@@ -244,6 +244,8 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
         ocultar();
         int codigo = controladorTelefono.getCodigoSiguiente();
         miDirectorio.setCodigo(codigo);
+        miDirectorio.Limpiar();
+        miDirectorio.Desactivar();
         miDirectorio.setVisible(true);
     }//GEN-LAST:event_mnMisTelefonosActionPerformed
 

@@ -8,19 +8,21 @@ package ec.edu.ups.vista;
 import ec.edu.ups.controlador.ControladorTelefono;
 import ec.edu.ups.controlador.ControladorUsuario;
 import ec.edu.ups.modelo.Telefono;
+import ec.edu.ups.modelo.Usuario;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Paul Idrovo
  */
 public class VistaDirectorioGeneral extends javax.swing.JInternalFrame {
-
+    
     private ControladorTelefono controladorTelefono;
     private ControladorUsuario controladorUsuario;
-
+    
     public VistaDirectorioGeneral(ControladorUsuario controladorUsuario, ControladorTelefono controladorTelefono) {
         initComponents();
         //ASIGNAR PARAMETROS
@@ -39,11 +41,20 @@ public class VistaDirectorioGeneral extends javax.swing.JInternalFrame {
 
         cmdTipoDato = new javax.swing.JComboBox<>();
         btBuscar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        lstTelefonos = new javax.swing.JList<>();
         txtDatoBusqueda = new javax.swing.JTextField();
         lblTitulo = new javax.swing.JLabel();
         btListarTodos = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblDirectorioGeneral = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        lblNombre1 = new javax.swing.JLabel();
+        lblCedula = new javax.swing.JLabel();
+        lblApellido1 = new javax.swing.JLabel();
+        lblCorreo = new javax.swing.JLabel();
+        txtCedula = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
+        txtApellido = new javax.swing.JTextField();
+        txtCorreo = new javax.swing.JTextField();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
@@ -60,13 +71,6 @@ public class VistaDirectorioGeneral extends javax.swing.JInternalFrame {
                 btBuscarActionPerformed(evt);
             }
         });
-
-        lstTelefonos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "LISTA DE TELEFONOS", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 14))); // NOI18N
-        lstTelefonos.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        lstTelefonos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        lstTelefonos.setMaximumSize(new java.awt.Dimension(278, 250));
-        lstTelefonos.setMinimumSize(new java.awt.Dimension(278, 250));
-        jScrollPane1.setViewportView(lstTelefonos);
 
         txtDatoBusqueda.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         txtDatoBusqueda.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -87,49 +91,132 @@ public class VistaDirectorioGeneral extends javax.swing.JInternalFrame {
             }
         });
 
+        tblDirectorioGeneral.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Codigo", "Numero", "Tipo", "Operadora"
+            }
+        ));
+        jScrollPane1.setViewportView(tblDirectorioGeneral);
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "DATOS USUARIO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 18))); // NOI18N
+
+        lblNombre1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        lblNombre1.setText("NOMBRE");
+
+        lblCedula.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        lblCedula.setText("CEDULA");
+
+        lblApellido1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        lblApellido1.setText("APELLIDO");
+
+        lblCorreo.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        lblCorreo.setText("CORREO");
+
+        txtCedula.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        txtCedula.setEnabled(false);
+        txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCedulaKeyTyped(evt);
+            }
+        });
+
+        txtNombre.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        txtNombre.setEnabled(false);
+
+        txtApellido.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        txtApellido.setEnabled(false);
+
+        txtCorreo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        txtCorreo.setEnabled(false);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblNombre1)
+                    .addComponent(lblCedula)
+                    .addComponent(lblApellido1)
+                    .addComponent(lblCorreo))
+                .addGap(73, 73, 73)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(txtApellido, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                    .addComponent(txtCorreo)
+                    .addComponent(txtCedula)
+                    .addComponent(txtNombre))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCedula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtCedula))
+                .addGap(10, 10, 10)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNombre1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtNombre))
+                .addGap(10, 10, 10)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblApellido1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtApellido))
+                .addGap(10, 10, 10)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtCorreo))
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(cmdTipoDato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
+                        .addComponent(txtDatoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(236, 236, 236))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(327, 327, 327))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(224, 224, 224)
-                        .addComponent(lblTitulo))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(cmdTipoDato, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27)
-                                .addComponent(txtDatoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(47, 47, 47)
-                                .addComponent(btBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 703, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(20, 20, 20)
-                                .addComponent(btListarTodos)))))
-                .addGap(20, 20, 20))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 971, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(360, 360, 360)
+                .addComponent(btListarTodos))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(354, 354, 354)
+                .addComponent(lblTitulo))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(9, 9, 9)
+                .addGap(15, 15, 15)
                 .addComponent(lblTitulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmdTipoDato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btBuscar)
-                    .addComponent(txtDatoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(169, 169, 169)
-                        .addComponent(btListarTodos)
-                        .addGap(230, 230, 230))))
+                    .addComponent(cmdTipoDato, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDatoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btBuscar))
+                .addGap(11, 11, 11)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
+                .addComponent(btListarTodos)
+                .addGap(15, 15, 15)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10))
         );
 
         pack();
@@ -147,37 +234,78 @@ public class VistaDirectorioGeneral extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtDatoBusquedaKeyTyped
 
     private void btListarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListarTodosActionPerformed
-        List<Telefono> listaTelefonos = controladorTelefono.verTelefonos();
-        DefaultListModel modelo = new DefaultListModel();
-
-        for (Telefono telefono : listaTelefonos) {
-            modelo.addElement(telefono.toString());
-        }
-        lstTelefonos.setModel(modelo);
+        ActualizarTabla();
     }//GEN-LAST:event_btListarTodosActionPerformed
-
+    
+    public void ActualizarTabla() {
+        List<Telefono> listaTelefonos = controladorTelefono.verTelefonos();
+        
+        DefaultTableModel modelo = (DefaultTableModel) tblDirectorioGeneral.getModel();
+        modelo.setRowCount(0);
+        tblDirectorioGeneral.setModel(modelo);
+        Object[] fila = new Object[4];
+        
+        for (Telefono telefono : listaTelefonos) {
+            fila[0] = telefono.getCodigo();
+            fila[1] = telefono.getNumero();
+            fila[2] = telefono.getTipo();
+            fila[3] = telefono.getOperadora();
+            modelo.addRow(fila);
+        }
+        this.tblDirectorioGeneral.setModel(modelo);
+    }
     private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
         if (cmdTipoDato.getSelectedItem().toString().equals("SELECCIONAR TIPO")) {
             JOptionPane.showMessageDialog(null, "SELECIONE EL TIPO DE DATO", "ERROR DE DATOS", JOptionPane.WARNING_MESSAGE);
         } else {
             List<Telefono> listaTelefonos = controladorUsuario.verTelefonosGeneralUsuario(txtDatoBusqueda.getText(), cmdTipoDato.getSelectedItem().toString());
-            DefaultListModel modelo = new DefaultListModel();
-
+            DefaultTableModel modelo = (DefaultTableModel) tblDirectorioGeneral.getModel();
+            modelo.setRowCount(0);
+            tblDirectorioGeneral.setModel(modelo);
+            Object[] fila = new Object[4];
+            
             for (Telefono telefono : listaTelefonos) {
-                modelo.addElement(telefono.toString());
+                fila[0] = telefono.getCodigo();
+                fila[1] = telefono.getNumero();
+                fila[2] = telefono.getTipo();
+                fila[3] = telefono.getOperadora();
+                modelo.addRow(fila);
             }
-            lstTelefonos.setModel(modelo);
+            this.tblDirectorioGeneral.setModel(modelo);
+            Usuario usuarioBuscado = controladorUsuario.verUsuario();
+            txtNombre.setText(usuarioBuscado.getNombre());
+            txtApellido.setText(usuarioBuscado.getApellido());
+            txtCedula.setText(usuarioBuscado.getCedula());
+            txtCorreo.setText(usuarioBuscado.getCorreo());
         }
     }//GEN-LAST:event_btBuscarActionPerformed
+
+    private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
+        char validar = evt.getKeyChar();
+        int asscii = (int) validar;
+        if (!Character.isDigit(validar) && asscii != 8) {
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "INGRESE SOLO NUMEROS", "ERROR DE DATOS", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_txtCedulaKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btBuscar;
     private javax.swing.JButton btListarTodos;
     private javax.swing.JComboBox<String> cmdTipoDato;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblApellido1;
+    private javax.swing.JLabel lblCedula;
+    private javax.swing.JLabel lblCorreo;
+    private javax.swing.JLabel lblNombre1;
     private javax.swing.JLabel lblTitulo;
-    private javax.swing.JList<String> lstTelefonos;
+    private javax.swing.JTable tblDirectorioGeneral;
+    private javax.swing.JTextField txtApellido;
+    private javax.swing.JTextField txtCedula;
+    private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDatoBusqueda;
+    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }

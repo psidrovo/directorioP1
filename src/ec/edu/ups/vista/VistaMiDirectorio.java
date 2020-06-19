@@ -52,24 +52,15 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
         cmbTipo = new javax.swing.JComboBox<>();
         btAgregar = new javax.swing.JButton();
         txtNumero = new javax.swing.JFormattedTextField();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        txtCodigoEditar = new javax.swing.JTextField();
-        cmbTipoEditar = new javax.swing.JComboBox<>();
-        btGuardar = new javax.swing.JButton();
-        cmbOperadoraEditar = new javax.swing.JComboBox<>();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        txtNumeroEditar = new javax.swing.JFormattedTextField();
+        btActualizar = new javax.swing.JButton();
+        btCancelar = new javax.swing.JButton();
+        btEliminar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDirectorio = new javax.swing.JTable();
         txtCodigoBuscar = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         btBuscar = new javax.swing.JButton();
-        btListarTodos = new javax.swing.JButton();
-        btEliminar = new javax.swing.JButton();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
@@ -92,7 +83,7 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "AGREGAR TELEFONO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "TELEFONO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14))); // NOI18N
         jPanel1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
 
         cmbOperadora.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -134,34 +125,76 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
 
         txtNumero.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtNumero.setEnabled(false);
+        txtNumero.setMaximumSize(new java.awt.Dimension(365, 365));
+
+        btActualizar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        btActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/iconos/salvar.png"))); // NOI18N
+        btActualizar.setText("ACTUALIZAR");
+        btActualizar.setEnabled(false);
+        btActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btActualizarActionPerformed(evt);
+            }
+        });
+
+        btCancelar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/iconos/cerrar.png"))); // NOI18N
+        btCancelar.setText("CANCELAR");
+        btCancelar.setEnabled(false);
+        btCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCancelarActionPerformed(evt);
+            }
+        });
+
+        btEliminar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        btEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/iconos/basura.png"))); // NOI18N
+        btEliminar.setText("ELIMINAR");
+        btEliminar.setEnabled(false);
+        btEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(81, 81, 81)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCodigo)
-                            .addComponent(cmbTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel1))
-                        .addGap(53, 53, 53)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(66, 66, 66)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btAgregar)
-                                .addGap(124, 124, 124))
-                            .addComponent(cmbOperadora, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtNumero))))
-                .addGap(56, 56, 56))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel1))
+                                .addGap(53, 53, 53)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(cmbOperadora, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtNumero, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3))
+                                .addGap(81, 81, 81)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cmbTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(152, 152, 152)
+                                .addComponent(btActualizar))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(170, 170, 170)
+                                .addComponent(btEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(20, 20, 20)
+                        .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(22, 22, 22))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,7 +211,7 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
                     .addComponent(cmbTipo))
                 .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtNumero)
+                    .addComponent(txtNumero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -186,100 +219,13 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
                         .addGap(0, 0, 0)
                         .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE))
                     .addComponent(cmbOperadora))
-                .addGap(15, 15, 15)
-                .addComponent(btAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "EDITAR TELEFONO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14))); // NOI18N
-        jPanel2.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
-
-        jLabel9.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel9.setText("OPERADORA");
-
-        txtCodigoEditar.setEditable(false);
-        txtCodigoEditar.setBackground(new java.awt.Color(255, 153, 102));
-        txtCodigoEditar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-
-        cmbTipoEditar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        cmbTipoEditar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR", "FIJO", "MOVIL", "FAX", "CASA", "TRABAJO", "FAX CASA", "FAX TRABAJO", "LOCALIZADOR" }));
-        cmbTipoEditar.setEnabled(false);
-        cmbTipoEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbTipoEditarActionPerformed(evt);
-            }
-        });
-
-        btGuardar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        btGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/iconos/salvar.png"))); // NOI18N
-        btGuardar.setText("GUARDAR");
-        btGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btGuardarActionPerformed(evt);
-            }
-        });
-
-        cmbOperadoraEditar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        cmbOperadoraEditar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR", "MOVISTAR", "CLARO", "CNT", "TUENTI", "ETAPA", "OTRO" }));
-        cmbOperadoraEditar.setEnabled(false);
-
-        jLabel10.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel10.setText("NUMERO");
-
-        jLabel11.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel11.setText("CODIGO");
-
-        jLabel12.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel12.setText("TIPO");
-
-        txtNumeroEditar.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel9))
-                .addGap(54, 54, 54)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btGuardar)
-                        .addGap(196, 196, 196))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cmbOperadoraEditar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cmbTipoEditar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtCodigoEditar, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtNumeroEditar))
-                        .addGap(40, 40, 40))))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCodigoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbTipoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNumeroEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbOperadoraEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
-                .addComponent(btGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "DIRECTORIO PERSONAL", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14))); // NOI18N
@@ -331,63 +277,34 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
             }
         });
 
-        btListarTodos.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        btListarTodos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/iconos/directorio-telefonico.png"))); // NOI18N
-        btListarTodos.setText("MI DIRECTORIO");
-        btListarTodos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btListarTodosActionPerformed(evt);
-            }
-        });
-
-        btEliminar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        btEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/iconos/basura.png"))); // NOI18N
-        btEliminar.setText("ELIMINAR TELEFONO");
-        btEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btEliminarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 735, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addGap(18, 18, 18)
-                        .addComponent(txtCodigoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btListarTodos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
-                            .addComponent(btBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap())
+                        .addComponent(txtCodigoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42)
+                        .addComponent(btBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(654, 654, 654))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(txtCodigoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(20, 20, 20)
-                        .addComponent(btBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(btListarTodos, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(btEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(252, 252, 252))
-                    .addComponent(jScrollPane1))
-                .addContainerGap())
+                .addGap(7, 7, 7)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtCodigoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btBuscar))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -395,24 +312,21 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(172, 172, 172)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
+                .addGap(259, 259, 259))
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         pack();
@@ -427,40 +341,30 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
             controladorUsuario.agregarTelefono(Integer.valueOf(txtCodigo.getText()), txtNumero.getValue().toString(),
                     cmbTipo.getSelectedItem().toString(), cmbOperadora.getSelectedItem().toString());
             JOptionPane.showMessageDialog(null, "TELEFONO AGREGADO CORRECTAMENTE", "AGREGADO", JOptionPane.INFORMATION_MESSAGE);
-
-            txtCodigo.setText(String.valueOf(controladorTelefono.getCodigoSiguiente()));
-            txtNumero.setValue("");
-            cmbTipo.setSelectedIndex(0);
-            cmbOperadora.setSelectedIndex(0);
+            Limpiar();
             ActualizarTabla();
         }
     }//GEN-LAST:event_btAgregarActionPerformed
-
-    private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGuardarActionPerformed
-        if (txtCodigoEditar.getText().equals("") || txtNumeroEditar.getText().equals("")
-                || cmbTipoEditar.getSelectedItem().toString().equals("SELECCIONAR") || cmbOperadoraEditar.getSelectedItem().toString().equals("SELECCIONAR")) {
+    public void Limpiar() {
+        txtCodigo.setText(String.valueOf(controladorTelefono.getCodigoSiguiente()));
+        txtNumero.setValue("");
+        cmbTipo.setSelectedIndex(0);
+        cmbOperadora.setSelectedIndex(0);
+    }
+    private void btActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btActualizarActionPerformed
+        if (txtCodigo.getText().equals("") || txtNumero.getText().equals("")
+                || cmbTipo.getSelectedItem().toString().equals("SELECCIONAR") || cmbOperadora.getSelectedItem().toString().equals("SELECCIONAR")) {
             JOptionPane.showMessageDialog(null, "LLENE TODOS LOS CAMPOS", "EDITAR", JOptionPane.ERROR_MESSAGE);
         } else {
-            controladorUsuario.actualizarTelefono(Integer.valueOf(txtCodigoEditar.getText()), txtNumeroEditar.getText(),
-                    cmbTipoEditar.getSelectedItem().toString(), cmbOperadoraEditar.getSelectedItem().toString());
+            controladorUsuario.actualizarTelefono(Integer.valueOf(txtCodigo.getText()), txtNumero.getText(),
+                    cmbTipo.getSelectedItem().toString(), cmbOperadora.getSelectedItem().toString());
 
             JOptionPane.showMessageDialog(null, "TELEFONO AGREGADO CORRECTAMENTE", "AGREGADO", JOptionPane.INFORMATION_MESSAGE);
-            txtCodigoEditar.setText("");
-            txtNumeroEditar.setText("");
-            cmbTipoEditar.setSelectedIndex(0);
-            cmbOperadoraEditar.setSelectedIndex(0);
-            txtCodigoEditar.setEnabled(true);
-            txtNumeroEditar.setEnabled(false);
-            cmbTipoEditar.setEnabled(false);
-            cmbOperadoraEditar.setEnabled(false);
-            btGuardar.setEnabled(false);
+            Limpiar();
+            Desactivar();
             ActualizarTabla();
         }
-    }//GEN-LAST:event_btGuardarActionPerformed
-
-    private void btListarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListarTodosActionPerformed
-        ActualizarTabla();
-    }//GEN-LAST:event_btListarTodosActionPerformed
+    }//GEN-LAST:event_btActualizarActionPerformed
 
     public void ActualizarTabla() {
         List<Telefono> listaTelefonos = controladorUsuario.verTelefonos();
@@ -479,22 +383,6 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
         }
         this.tblDirectorio.setModel(modelo);
     }
-    private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
-        DefaultTableModel modelo = (DefaultTableModel) tblDirectorio.getModel();
-        if (tblDirectorio.getSelectedRow() != -1) {
-            int confirmar = JOptionPane.showConfirmDialog(null, "ELIMINAR EL TELEFONO SELECCIONADO?");
-            if (JOptionPane.OK_OPTION == confirmar) {
-                int fila = tblDirectorio.getSelectedRow();
-                int codigo = Integer.valueOf(tblDirectorio.getValueAt(fila, 0).toString());
-                controladorUsuario.eliminarTelefono(codigo);
-                ActualizarTabla();
-                JOptionPane.showMessageDialog(null, "TELEFONO ELIMINADO", "ERROR", JOptionPane.INFORMATION_MESSAGE);
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "NO SE HA SELECCIONADO NINGUN TELEFONO PARA ELIMINAR", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_btEliminarActionPerformed
-
     private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
 
         Telefono telefonoBuscado = controladorUsuario.verTelefonoCodigo(Integer.valueOf(txtCodigoBuscar.getText()));
@@ -516,94 +404,99 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
 
     private void tblDirectorioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDirectorioMouseClicked
         int fila = tblDirectorio.getSelectedRow();
-        txtCodigoEditar.setText(tblDirectorio.getValueAt(fila, 0).toString());
-        cmbOperadoraEditar.setEnabled(true);
-        cmbTipoEditar.setEnabled(true);
+        txtCodigo.setText(tblDirectorio.getValueAt(fila, 0).toString());
+        cmbOperadora.setEnabled(true);
+        cmbTipo.setEnabled(true);
         try {
             switch (tblDirectorio.getValueAt(fila, 2).toString()) {
                 case "FIJO":
-                    cmbTipoEditar.setSelectedIndex(1);
+                    cmbTipo.setSelectedIndex(1);
                     txtNumero.setFormatterFactory(
                             new javax.swing.text.DefaultFormatterFactory(
                                     new javax.swing.text.MaskFormatter("(+593)#-###-####")));
                     break;
                 case "MOVIL":
-                    cmbTipoEditar.setSelectedIndex(2);
+                    cmbTipo.setSelectedIndex(2);
                     txtNumero.setFormatterFactory(
                             new javax.swing.text.DefaultFormatterFactory(
                                     new javax.swing.text.MaskFormatter("(+593)##-###-####")));
                     break;
                 case "FAX":
-                    cmbTipoEditar.setSelectedIndex(3);
+                    cmbTipo.setSelectedIndex(3);
                     txtNumero.setFormatterFactory(
                             new javax.swing.text.DefaultFormatterFactory(
                                     new javax.swing.text.MaskFormatter("FAX (+593)##-###-####")));
                     break;
                 case "CASA":
-                    cmbTipoEditar.setSelectedIndex(4);
+                    cmbTipo.setSelectedIndex(4);
                     txtNumero.setFormatterFactory(
                             new javax.swing.text.DefaultFormatterFactory(
                                     new javax.swing.text.MaskFormatter("(+593)#-###-####")));
                     break;
                 case "TRABAJO":
-                    cmbTipoEditar.setSelectedIndex(5);
+                    cmbTipo.setSelectedIndex(5);
                     txtNumero.setFormatterFactory(
                             new javax.swing.text.DefaultFormatterFactory(
                                     new javax.swing.text.MaskFormatter("(+593)#-###-####")));
                     break;
                 case "FAX CASA":
-                    cmbTipoEditar.setSelectedIndex(6);
+                    cmbTipo.setSelectedIndex(6);
                     txtNumero.setFormatterFactory(
                             new javax.swing.text.DefaultFormatterFactory(
                                     new javax.swing.text.MaskFormatter("FAX (+593)##-###-####")));
                     break;
                 case "FAX TRABAJO":
-                    cmbTipoEditar.setSelectedIndex(7);
+                    cmbTipo.setSelectedIndex(7);
                     txtNumero.setFormatterFactory(
                             new javax.swing.text.DefaultFormatterFactory(
                                     new javax.swing.text.MaskFormatter("FAX (+593)##-###-####")));
                     break;
                 case "LOCALIZADOR":
-                    cmbTipoEditar.setSelectedIndex(8);
+                    cmbTipo.setSelectedIndex(8);
                     txtNumero.setFormatterFactory(
                             new javax.swing.text.DefaultFormatterFactory(
                                     new javax.swing.text.MaskFormatter("LOC (+593)##-###-####")));
                     break;
                 default:
-                    cmbTipoEditar.setSelectedIndex(0);
+                    cmbTipo.setSelectedIndex(0);
                     break;
             }
 
         } catch (ParseException ex) {
             Logger.getLogger(VistaMiDirectorio.class.getName()).log(Level.SEVERE, null, ex);
         }
-        txtNumeroEditar.setValue(tblDirectorio.getValueAt(fila, 1).toString());
+        txtNumero.setValue(tblDirectorio.getValueAt(fila, 1).toString());
         switch (tblDirectorio.getValueAt(fila, 3).toString()) {
             case "MOVISTAR":
-                cmbOperadoraEditar.setSelectedIndex(1);
+                cmbOperadora.setSelectedIndex(1);
                 break;
             case "CLARO":
-                cmbOperadoraEditar.setSelectedIndex(2);
+                cmbOperadora.setSelectedIndex(2);
                 break;
             case "CNT":
-                cmbOperadoraEditar.setSelectedIndex(3);
+                cmbOperadora.setSelectedIndex(3);
                 break;
             case "TUENTI":
-                cmbOperadoraEditar.setSelectedIndex(4);
+                cmbOperadora.setSelectedIndex(4);
                 break;
             case "ETAPA":
-                cmbOperadoraEditar.setSelectedIndex(5);
+                cmbOperadora.setSelectedIndex(5);
                 break;
             default:
-                cmbOperadoraEditar.setSelectedIndex(6);
+                cmbOperadora.setSelectedIndex(6);
                 break;
         }
+        btActualizar.setEnabled(true);
+        btAgregar.setEnabled(false);
+        btCancelar.setEnabled(true);
+        btEliminar.setEnabled(true);
     }//GEN-LAST:event_tblDirectorioMouseClicked
 
     private void cmbTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoActionPerformed
 
         try {
             txtNumero.setEnabled(true);
+            txtNumero.setValue("");
             String tipo = (String) cmbTipo.getSelectedItem();
             switch (tipo) {
                 case "FIJO":
@@ -658,100 +551,55 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_cmbTipoActionPerformed
 
-    private void cmbTipoEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoEditarActionPerformed
-        txtNumeroEditar.setValue("");
-        try {
-            txtNumeroEditar.setEnabled(true);
-            String tipo = (String) cmbTipoEditar.getSelectedItem();
-            switch (tipo) {
-                case "FIJO":
-                    txtNumeroEditar.setFormatterFactory(
-                            new javax.swing.text.DefaultFormatterFactory(
-                                    new javax.swing.text.MaskFormatter("(+593)#-###-####")));
-                    break;
-                case "MOVIL":
-                    txtNumeroEditar.setFormatterFactory(
-                            new javax.swing.text.DefaultFormatterFactory(
-                                    new javax.swing.text.MaskFormatter("(+593)##-###-####")));
-                    break;
-                case "FAX":
-                    txtNumeroEditar.setFormatterFactory(
-                            new javax.swing.text.DefaultFormatterFactory(
-                                    new javax.swing.text.MaskFormatter("FAX (+593)##-###-####")));
-                    break;
-                case "CASA":
-                    txtNumeroEditar.setFormatterFactory(
-                            new javax.swing.text.DefaultFormatterFactory(
-                                    new javax.swing.text.MaskFormatter("(+593)#-###-####")));
-                    break;
-                case "TRABAJO":
-                    txtNumeroEditar.setFormatterFactory(
-                            new javax.swing.text.DefaultFormatterFactory(
-                                    new javax.swing.text.MaskFormatter("(+593)#-###-####")));
-                    break;
-                case "FAX CASA":
-                    txtNumeroEditar.setFormatterFactory(
-                            new javax.swing.text.DefaultFormatterFactory(
-                                    new javax.swing.text.MaskFormatter("FAX (+593)##-###-####")));
-                    break;
-                case "FAX TRABAJO":
-                    txtNumeroEditar.setFormatterFactory(
-                            new javax.swing.text.DefaultFormatterFactory(
-                                    new javax.swing.text.MaskFormatter("FAX (+593)##-###-####")));
-                    break;
-                case "LOCALIZADOR":
-                    txtNumeroEditar.setFormatterFactory(
-                            new javax.swing.text.DefaultFormatterFactory(
-                                    new javax.swing.text.MaskFormatter("LOC (+593)##-###-####")));
-                    break;
-
-                default:
-                    txtNumeroEditar.setEnabled(false);
-                    break;
-            }
-
-        } catch (ParseException ex) {
-            Logger.getLogger(VistaMiDirectorio.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }//GEN-LAST:event_cmbTipoEditarActionPerformed
-
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
-         ActualizarTabla();
+        ActualizarTabla();
     }//GEN-LAST:event_formInternalFrameActivated
+    public void Desactivar(){
+        btAgregar.setEnabled(true);
+        btActualizar.setEnabled(false);
+        btCancelar.setEnabled(false);
+        btEliminar.setEnabled(false);
+    }
+    private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
+        Desactivar();
+        Limpiar();
+    }//GEN-LAST:event_btCancelarActionPerformed
+
+    private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
+        int confirmar = JOptionPane.showConfirmDialog(null, "ELIMINAR EL TELEFONO SELECCIONADO?");
+        if (JOptionPane.OK_OPTION == confirmar) {
+            int codigo = Integer.valueOf(txtCodigo.getText());
+            controladorUsuario.eliminarTelefono(codigo);
+            ActualizarTabla();
+            JOptionPane.showMessageDialog(null, "TELEFONO ELIMINADO", "ELIMINADO", JOptionPane.INFORMATION_MESSAGE);
+            Desactivar();
+            Limpiar();
+        }
+    }//GEN-LAST:event_btEliminarActionPerformed
 
     public void setCodigo(int codigo) {
         txtCodigo.setText(String.valueOf(codigo));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btActualizar;
     private javax.swing.JButton btAgregar;
     private javax.swing.JButton btBuscar;
+    private javax.swing.JButton btCancelar;
     private javax.swing.JButton btEliminar;
-    private javax.swing.JButton btGuardar;
-    private javax.swing.JButton btListarTodos;
     private javax.swing.JComboBox<String> cmbOperadora;
-    private javax.swing.JComboBox<String> cmbOperadoraEditar;
     private javax.swing.JComboBox<String> cmbTipo;
-    private javax.swing.JComboBox<String> cmbTipoEditar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblDirectorio;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtCodigoBuscar;
-    private javax.swing.JTextField txtCodigoEditar;
     private javax.swing.JFormattedTextField txtNumero;
-    private javax.swing.JFormattedTextField txtNumeroEditar;
     // End of variables declaration//GEN-END:variables
 }
