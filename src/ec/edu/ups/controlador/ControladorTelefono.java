@@ -94,4 +94,8 @@ public class ControladorTelefono {
         return telefonos;
     }
 
+    public int getCodigoSiguiente(){
+        int codigoSiguiente = telefonoDao.getCodigoActual()+1;
+        return codigoSiguiente;
+    }
 }

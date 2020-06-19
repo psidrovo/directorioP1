@@ -14,4 +14,5 @@ public interface ITelefono {
     public void update(Telefono telefono);
     public void delete(int codigo);   
     public List<Telefono> todosTelefonos();
+    public int getCodigoActual();
 }

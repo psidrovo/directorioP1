@@ -74,6 +74,23 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         setTitle("MI DIRECTORIO");
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameActivated(evt);
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "AGREGAR TELEFONO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14))); // NOI18N
         jPanel1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
@@ -411,7 +428,7 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
                     cmbTipo.getSelectedItem().toString(), cmbOperadora.getSelectedItem().toString());
             JOptionPane.showMessageDialog(null, "TELEFONO AGREGADO CORRECTAMENTE", "AGREGADO", JOptionPane.INFORMATION_MESSAGE);
 
-            txtCodigo.setText(String.valueOf(controladorUsuario.getCodigoNumeracion() + 1));
+            txtCodigo.setText(String.valueOf(controladorTelefono.getCodigoSiguiente()));
             txtNumero.setValue("");
             cmbTipo.setSelectedIndex(0);
             cmbOperadora.setSelectedIndex(0);
@@ -698,6 +715,10 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
         }
 
     }//GEN-LAST:event_cmbTipoEditarActionPerformed
+
+    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
+         ActualizarTabla();
+    }//GEN-LAST:event_formInternalFrameActivated
 
     public void setCodigo(int codigo) {
         txtCodigo.setText(String.valueOf(codigo));

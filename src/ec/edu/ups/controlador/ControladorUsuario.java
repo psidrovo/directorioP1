@@ -183,9 +183,4 @@ public class ControladorUsuario {
         return usuario;
     }
 
-    public int getCodigoNumeracion() {
-        return usuario.getCantidadTelefonos();
-    }
-
-
 }

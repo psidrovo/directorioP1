@@ -16,14 +16,16 @@ import java.util.Map;
 public class TelefonoDao implements ITelefono{
     
     private Map<Integer,Telefono> mapaTelefono;
-
+    int codigoSiguiente;
     public TelefonoDao() {
         mapaTelefono=new HashMap<Integer,Telefono>();
+        codigoSiguiente=0;
     }
 
     @Override
     public void create(Telefono telefono) {
         mapaTelefono.put(telefono.getCodigo(), telefono);
+        codigoSiguiente+=telefono.getCodigo();
     }
 
     @Override
@@ -50,5 +52,10 @@ public class TelefonoDao implements ITelefono{
             lista.add((Telefono) it.next());
         }
         return lista;
+    }
+
+    @Override
+    public int getCodigoActual() {
+        return codigoSiguiente;
     }
 }
