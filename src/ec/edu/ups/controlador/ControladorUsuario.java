@@ -139,8 +139,9 @@ public class ControladorUsuario {
      * codigo posteriormente.
      *
      */
-    public Usuario verTelefonoCodigo() {
-        return usuario;
+    public Telefono verTelefonoCodigo(Integer codigo) {
+        Telefono telefonoBuscar = usuario.buscar(codigo);
+        return telefonoBuscar;
     }
 
     /**
@@ -181,5 +182,10 @@ public class ControladorUsuario {
     public Usuario verUsuario() {
         return usuario;
     }
+
+    public int getCodigoNumeracion() {
+        return usuario.getCantidadTelefonos();
+    }
+
 
 }

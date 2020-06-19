@@ -16,6 +16,7 @@ public class Usuario {
     private String correo;
     private String contrasena;
     private List<Telefono> directorio;
+    private int ultimoCodigoTelefono;
     
     public Usuario() {
         directorio=new ArrayList<Telefono>();
@@ -89,6 +90,10 @@ public class Usuario {
         }
     }
 
+    public int getCantidadTelefonos(){
+        return directorio.size();
+    }
+    
     public void eliminarTelefono(int codigo) {
         for(int i=0;i<directorio.size();i++){
             if(directorio.get(i).getCodigo()==codigo){

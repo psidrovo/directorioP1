@@ -81,7 +81,7 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="mnEliminarTelefono">
+        <Menu class="javax.swing.JMenu" name="mnDirectorios">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/ec/edu/ups/iconos/directorio.png"/>
