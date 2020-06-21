@@ -29,6 +29,7 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
     private VistaDirectorioGeneral directorioGeneral;
     private VistaMiDirectorio miDirectorio;
     private VistaRegistrar resgistrar;
+    private VistaEditarUsuario editarUsuario;
     //Dao
     private TelefonoDao daoTelefono;
     private UsuarioDao daoUsuario;
@@ -54,12 +55,14 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
         directorioGeneral = new VistaDirectorioGeneral(controladorUsuario, controladorTelefono);
         miDirectorio = new VistaMiDirectorio(controladorUsuario, controladorTelefono);
         resgistrar = new VistaRegistrar(controladorUsuario, controladorTelefono);
+        editarUsuario = new VistaEditarUsuario(controladorUsuario, controladorTelefono,this);
 
         //Agregar Panel
         desktopPane.add(inicioSesion);
         desktopPane.add(directorioGeneral);
         desktopPane.add(miDirectorio);
         desktopPane.add(resgistrar);
+        desktopPane.add(editarUsuario);
 
         //Posicion
         this.setLocationRelativeTo(null);
@@ -87,6 +90,7 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
         mnDirectorios = new javax.swing.JMenu();
         mnDirectorioGeneral = new javax.swing.JMenuItem();
         mnMisTelefonos = new javax.swing.JMenuItem();
+        mnEditarMisDatos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("DIRECTORIO TELEFONICO");
@@ -188,6 +192,18 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
         });
         mnDirectorios.add(mnMisTelefonos);
 
+        mnEditarMisDatos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        mnEditarMisDatos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/iconos/editar-telefono.png"))); // NOI18N
+        mnEditarMisDatos.setMnemonic('d');
+        mnEditarMisDatos.setText("Editar Datos");
+        mnEditarMisDatos.setEnabled(false);
+        mnEditarMisDatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnEditarMisDatosActionPerformed(evt);
+            }
+        });
+        mnDirectorios.add(mnEditarMisDatos);
+
         menuBar.add(mnDirectorios);
 
         setJMenuBar(menuBar);
@@ -211,6 +227,7 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
         directorioGeneral.setVisible(false);
         miDirectorio.setVisible(false);
         resgistrar.setVisible(false);
+        editarUsuario.setVisible(false);
     }
     private void mnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnIniciarSesionActionPerformed
         ocultar();
@@ -228,6 +245,7 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
         mnCerrarSesion.setEnabled(false);
         mnIniciarSesion.setEnabled(true);
         mnRegistrarse.setEnabled(true);
+        mnEditarMisDatos.setEnabled(false);
         lblUsuarioLogin.setText("BIENVENIDO");
     }//GEN-LAST:event_mnCerrarSesionActionPerformed
 
@@ -241,13 +259,14 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
     }//GEN-LAST:event_mnSalirActionPerformed
 
     private void mnMisTelefonosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnMisTelefonosActionPerformed
-        ocultar();
-        int codigo = controladorTelefono.getCodigoSiguiente();
-        miDirectorio.setCodigo(codigo);
-        miDirectorio.Limpiar();
-        miDirectorio.Desactivar();
+        ocultar();        
         miDirectorio.setVisible(true);
     }//GEN-LAST:event_mnMisTelefonosActionPerformed
+
+    private void mnEditarMisDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnEditarMisDatosActionPerformed
+        ocultar();
+        editarUsuario.setVisible(true);
+    }//GEN-LAST:event_mnEditarMisDatosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -290,30 +309,39 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
         });
     }
 
-    public JMenuItem getMisTelefonos(){
+    public JMenuItem getMisTelefonos() {
         return mnMisTelefonos;
     }
-    public JMenuItem getIniciarSesion(){
+
+    public JMenuItem getIniciarSesion() {
         return mnIniciarSesion;
     }
-    public JMenuItem getCerrarSesion(){
+
+    public JMenuItem getCerrarSesion() {
         return mnCerrarSesion;
     }
-    public JMenuItem getSalir(){
+
+    public JMenuItem getSalir() {
         return mnSalir;
     }
-    public JMenuItem getRegistrarse(){
+
+    public JMenuItem getRegistrarse() {
         return mnRegistrarse;
     }
-    public JMenuItem getDirectorioGeneral(){
+
+    public JMenuItem getDirectorioGeneral() {
         return mnDirectorioGeneral;
     }
-    public JLabel getBienvenido(){
+
+    public JMenuItem getEditarMisDatos() {
+        return mnEditarMisDatos;
+    }
+
+    public JLabel getBienvenido() {
         return lblUsuarioLogin;
     }
-        
-    
-               
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenu fileMenu;
@@ -324,6 +352,7 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnCerrarSesion;
     private javax.swing.JMenuItem mnDirectorioGeneral;
     private javax.swing.JMenu mnDirectorios;
+    private javax.swing.JMenuItem mnEditarMisDatos;
     private javax.swing.JMenuItem mnIniciarSesion;
     private javax.swing.JMenuItem mnMisTelefonos;
     private javax.swing.JMenuItem mnRegistrarse;

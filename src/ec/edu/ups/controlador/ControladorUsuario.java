@@ -57,6 +57,18 @@ public class ControladorUsuario {
         Usuario registroUsuario = new Usuario(cedula, nombre, apellido, correo, contrasena);
         usuarioDao.create(registroUsuario);
     }
+    
+    public void actualizar(String cedula, String nombre, String apellido, String correo, String contrasena) {
+        usuarioDao.delete(usuario.getCorreo()+usuario.getContrasena());
+        //Actualizamos los datos
+        usuario.setCedula(cedula);
+        usuario.setNombre(nombre);
+        usuario.setApellido(apellido);
+        usuario.setCorreo(correo);
+        usuario.setContrasena(contrasena);
+        //CREAMOS EL USUARIO CON LOS DATOS ANTERIORES
+        usuarioDao.create(usuario);
+    }
 
     /**
      * Metodo inicoSesion.
@@ -181,6 +193,11 @@ public class ControladorUsuario {
      */
     public Usuario verUsuario() {
         return usuario;
+    }
+    
+    public void actualizarUsuario(String nombre, String apellido, String cedula) {
+        usuario.actualizarDatos(nombre, apellido, cedula);
+        usuarioDao.update(usuario);
     }
 
 }

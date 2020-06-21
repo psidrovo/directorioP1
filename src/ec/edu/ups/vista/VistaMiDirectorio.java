@@ -200,11 +200,9 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCodigo)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -214,11 +212,9 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
                     .addComponent(txtNumero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(15, 15, 15)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE))
-                    .addComponent(cmbOperadora))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                    .addComponent(cmbOperadora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -350,6 +346,7 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
         txtNumero.setValue("");
         cmbTipo.setSelectedIndex(0);
         cmbOperadora.setSelectedIndex(0);
+        txtCodigoBuscar.setText("");
     }
     private void btActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btActualizarActionPerformed
         if (txtCodigo.getText().equals("") || txtNumero.getText().equals("")
@@ -385,25 +382,30 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
     }
     private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
 
-        Telefono telefonoBuscado = controladorUsuario.verTelefonoCodigo(Integer.valueOf(txtCodigoBuscar.getText()));
-        DefaultTableModel modelo = (DefaultTableModel) tblDirectorio.getModel();
-        modelo.setRowCount(0);
-        tblDirectorio.setModel(modelo);
-
-        Object[] fila = new Object[4];
-        fila[0] = telefonoBuscado.getCodigo();
-        fila[1] = telefonoBuscado.getNumero();
-        fila[2] = telefonoBuscado.getTipo();
-        fila[3] = telefonoBuscado.getOperadora();
-
-        modelo.addRow(fila);
-
-        this.tblDirectorio.setModel(modelo);
-
+        int codigoBuscar =Integer.valueOf(txtCodigoBuscar.getText());
+        int filasTabla = tblDirectorio.getRowCount();
+        boolean bandera = true;
+        
+        for (int i = 0; i < filasTabla; i++) {
+            int codigoTabla = Integer.valueOf(tblDirectorio.getValueAt(i, 0).toString());
+            if(codigoBuscar==codigoTabla){
+                bandera=false;
+                tblDirectorio.setRowSelectionInterval(i, i);
+                editarDatos(i);
+                break;
+            }            
+        }
+        if(bandera){
+             JOptionPane.showMessageDialog(null, "VALOR NO ENCONTRADO", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }        
     }//GEN-LAST:event_btBuscarActionPerformed
 
     private void tblDirectorioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDirectorioMouseClicked
-        int fila = tblDirectorio.getSelectedRow();
+        int fila = tblDirectorio.getSelectedRow(); 
+        editarDatos(fila);
+    }//GEN-LAST:event_tblDirectorioMouseClicked
+
+    public void editarDatos(int fila){
         txtCodigo.setText(tblDirectorio.getValueAt(fila, 0).toString());
         cmbOperadora.setEnabled(true);
         cmbTipo.setEnabled(true);
@@ -425,7 +427,7 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
                     cmbTipo.setSelectedIndex(3);
                     txtNumero.setFormatterFactory(
                             new javax.swing.text.DefaultFormatterFactory(
-                                    new javax.swing.text.MaskFormatter("FAX (+593)##-###-####")));
+                                    new javax.swing.text.MaskFormatter("FX (+593)##-###-####")));
                     break;
                 case "CASA":
                     cmbTipo.setSelectedIndex(4);
@@ -439,23 +441,23 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
                             new javax.swing.text.DefaultFormatterFactory(
                                     new javax.swing.text.MaskFormatter("(+593)#-###-####")));
                     break;
-                case "FAX CASA":
+                case "FX CASA":
                     cmbTipo.setSelectedIndex(6);
                     txtNumero.setFormatterFactory(
                             new javax.swing.text.DefaultFormatterFactory(
-                                    new javax.swing.text.MaskFormatter("FAX (+593)##-###-####")));
+                                    new javax.swing.text.MaskFormatter("FX (+593)##-###-####")));
                     break;
-                case "FAX TRABAJO":
+                case "FX TRABAJO":
                     cmbTipo.setSelectedIndex(7);
                     txtNumero.setFormatterFactory(
                             new javax.swing.text.DefaultFormatterFactory(
-                                    new javax.swing.text.MaskFormatter("FAX (+593)##-###-####")));
+                                    new javax.swing.text.MaskFormatter("FX (+593)##-###-####")));
                     break;
                 case "LOCALIZADOR":
                     cmbTipo.setSelectedIndex(8);
                     txtNumero.setFormatterFactory(
                             new javax.swing.text.DefaultFormatterFactory(
-                                    new javax.swing.text.MaskFormatter("LOC (+593)##-###-####")));
+                                    new javax.swing.text.MaskFormatter("LC (+593)##-###-####")));
                     break;
                 default:
                     cmbTipo.setSelectedIndex(0);
@@ -490,8 +492,7 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
         btAgregar.setEnabled(false);
         btCancelar.setEnabled(true);
         btEliminar.setEnabled(true);
-    }//GEN-LAST:event_tblDirectorioMouseClicked
-
+    }
     private void cmbTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoActionPerformed
 
         try {
@@ -512,7 +513,7 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
                 case "FAX":
                     txtNumero.setFormatterFactory(
                             new javax.swing.text.DefaultFormatterFactory(
-                                    new javax.swing.text.MaskFormatter("FAX (+593)##-###-####")));
+                                    new javax.swing.text.MaskFormatter("FX (+593)##-###-####")));
                     break;
                 case "CASA":
                     txtNumero.setFormatterFactory(
@@ -524,20 +525,20 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
                             new javax.swing.text.DefaultFormatterFactory(
                                     new javax.swing.text.MaskFormatter("(+593)#-###-####")));
                     break;
-                case "FAX CASA":
+                case "FX CASA":
                     txtNumero.setFormatterFactory(
                             new javax.swing.text.DefaultFormatterFactory(
-                                    new javax.swing.text.MaskFormatter("FAX (+593)##-###-####")));
+                                    new javax.swing.text.MaskFormatter("FX (+593)##-###-####")));
                     break;
-                case "FAX TRABAJO":
+                case "FX TRABAJO":
                     txtNumero.setFormatterFactory(
                             new javax.swing.text.DefaultFormatterFactory(
-                                    new javax.swing.text.MaskFormatter("FAX (+593)##-###-####")));
+                                    new javax.swing.text.MaskFormatter("FX (+593)##-###-####")));
                     break;
                 case "LOCALIZADOR":
                     txtNumero.setFormatterFactory(
                             new javax.swing.text.DefaultFormatterFactory(
-                                    new javax.swing.text.MaskFormatter("LOC (+593)##-###-####")));
+                                    new javax.swing.text.MaskFormatter("LC (+593)##-###-####")));
                     break;
 
                 default:
@@ -552,6 +553,9 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cmbTipoActionPerformed
 
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
+        txtCodigo.setText(String.valueOf(controladorTelefono.getCodigoSiguiente()));
+        Limpiar();
+        Desactivar();
         ActualizarTabla();
     }//GEN-LAST:event_formInternalFrameActivated
     public void Desactivar(){
@@ -577,9 +581,6 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btEliminarActionPerformed
 
-    public void setCodigo(int codigo) {
-        txtCodigo.setText(String.valueOf(codigo));
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btActualizar;

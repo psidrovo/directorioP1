@@ -16,7 +16,6 @@ public class Usuario {
     private String correo;
     private String contrasena;
     private List<Telefono> directorio;
-    private int ultimoCodigoTelefono;
     
     public Usuario() {
         directorio=new ArrayList<Telefono>();
@@ -28,7 +27,6 @@ public class Usuario {
         this.apellido = apellido;
         this.correo = correo;
         this.contrasena = contrasena;
-        this.directorio = directorio;
         this.directorio=new ArrayList<Telefono>();
     }
 
@@ -89,10 +87,6 @@ public class Usuario {
             directorio.set(index, telefono);
         }
     }
-
-    public int getCantidadTelefonos(){
-        return directorio.size();
-    }
     
     public void eliminarTelefono(int codigo) {
         for(int i=0;i<directorio.size();i++){
@@ -115,6 +109,11 @@ public class Usuario {
             }
         }
         return null;
+    }
+    public void actualizarDatos (String nombre, String apellido, String cedula) {
+        setNombre(nombre);
+        setApellido(apellido);
+        setCedula(cedula);
     }
     
     

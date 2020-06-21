@@ -59,6 +59,23 @@ public class VistaDirectorioGeneral extends javax.swing.JInternalFrame {
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         setTitle("DIRECTORIO GENERAL");
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameActivated(evt);
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
 
         cmdTipoDato.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         cmdTipoDato.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR TIPO", "CORREO", "CEDULA" }));
@@ -258,25 +275,34 @@ public class VistaDirectorioGeneral extends javax.swing.JInternalFrame {
         if (cmdTipoDato.getSelectedItem().toString().equals("SELECCIONAR TIPO")) {
             JOptionPane.showMessageDialog(null, "SELECIONE EL TIPO DE DATO", "ERROR DE DATOS", JOptionPane.WARNING_MESSAGE);
         } else {
-            List<Telefono> listaTelefonos = controladorUsuario.verTelefonosGeneralUsuario(txtDatoBusqueda.getText(), cmdTipoDato.getSelectedItem().toString());
-            DefaultTableModel modelo = (DefaultTableModel) tblDirectorioGeneral.getModel();
-            modelo.setRowCount(0);
-            tblDirectorioGeneral.setModel(modelo);
-            Object[] fila = new Object[4];
-            
-            for (Telefono telefono : listaTelefonos) {
-                fila[0] = telefono.getCodigo();
-                fila[1] = telefono.getNumero();
-                fila[2] = telefono.getTipo();
-                fila[3] = telefono.getOperadora();
-                modelo.addRow(fila);
+            if (txtDatoBusqueda.getText().equals("")) {
+                
+                JOptionPane.showMessageDialog(null, "INGRESE UN VALOR", "ERROR DE DATOS", JOptionPane.WARNING_MESSAGE);
+            } else {
+                List<Telefono> listaTelefonos = controladorUsuario.verTelefonosGeneralUsuario(txtDatoBusqueda.getText(), cmdTipoDato.getSelectedItem().toString());
+                if (listaTelefonos != null) {
+                    DefaultTableModel modelo = (DefaultTableModel) tblDirectorioGeneral.getModel();
+                    modelo.setRowCount(0);
+                    tblDirectorioGeneral.setModel(modelo);
+                    Object[] fila = new Object[4];
+                    
+                    for (Telefono telefono : listaTelefonos) {
+                        fila[0] = telefono.getCodigo();
+                        fila[1] = telefono.getNumero();
+                        fila[2] = telefono.getTipo();
+                        fila[3] = telefono.getOperadora();
+                        modelo.addRow(fila);
+                    }
+                    this.tblDirectorioGeneral.setModel(modelo);
+                    Usuario usuarioBuscado = controladorUsuario.verUsuario();
+                    txtNombre.setText(usuarioBuscado.getNombre());
+                    txtApellido.setText(usuarioBuscado.getApellido());
+                    txtCedula.setText(usuarioBuscado.getCedula());
+                    txtCorreo.setText(usuarioBuscado.getCorreo());
+                } else {
+                    JOptionPane.showMessageDialog(null, "NO EXISTE USUARIO", "ERROR DE DATOS", JOptionPane.WARNING_MESSAGE);
+                }
             }
-            this.tblDirectorioGeneral.setModel(modelo);
-            Usuario usuarioBuscado = controladorUsuario.verUsuario();
-            txtNombre.setText(usuarioBuscado.getNombre());
-            txtApellido.setText(usuarioBuscado.getApellido());
-            txtCedula.setText(usuarioBuscado.getCedula());
-            txtCorreo.setText(usuarioBuscado.getCorreo());
         }
     }//GEN-LAST:event_btBuscarActionPerformed
 
@@ -288,6 +314,13 @@ public class VistaDirectorioGeneral extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "INGRESE SOLO NUMEROS", "ERROR DE DATOS", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_txtCedulaKeyTyped
+
+    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
+        DefaultTableModel modelo = (DefaultTableModel) tblDirectorioGeneral.getModel();
+        modelo.setRowCount(0);
+        tblDirectorioGeneral.setModel(modelo);
+        txtDatoBusqueda.setText("");
+    }//GEN-LAST:event_formInternalFrameActivated
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -142,6 +142,7 @@ public class VistaInicioSesion extends javax.swing.JInternalFrame {
             vistaPrincipal.getSalir().setEnabled(true);
             vistaPrincipal.getRegistrarse().setEnabled(false);
             vistaPrincipal.getCerrarSesion().setEnabled(true);
+            vistaPrincipal.getEditarMisDatos().setEnabled(true);
             txtUsuario.setText("");
             pswContraseña.setText("");
             this.setVisible(false);

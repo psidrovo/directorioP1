@@ -14,4 +14,5 @@ public interface IUsuario {
     public void update(Usuario usuario);
     public Usuario telefonosCorreo(String correo);
     public Usuario telefonosCedula(String correo);
+    public void delete(String credenciales);
 }

@@ -60,6 +60,13 @@ public class UsuarioDao implements IUsuario{
         }
         return null;
     }
+
+    @Override
+    public void delete(String credencial) {
+        if(mapaUsuario.containsKey(credencial)){
+            mapaUsuario.remove(credencial);
+        }
+    }
     
     
 }
