@@ -229,9 +229,9 @@ public class VistaEditarUsuario extends javax.swing.JInternalFrame {
             if (txtNombre.getText().equals("") || password.equals("") || txtApellido.getText().equals("") || txtCedula.getText().equals("") || txtCorreo.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "LLENE TODOS LOS CAMPOS", "ERROR", JOptionPane.ERROR_MESSAGE);
             } else {
-                controladorUsuario.actualizar(txtCedula.getText(), txtNombre.getText(), txtApellido.getText(), txtCorreo.getText(), password);
-                this.setVisible(false);
+                controladorUsuario.actualizarDatos(txtCedula.getText(), txtNombre.getText(), txtApellido.getText(), txtCorreo.getText(), password);                
                 vistaPrincipal.getBienvenido().setText("BIENVENIDO " + txtNombre.getText().toUpperCase() + " " + txtApellido.getText().toUpperCase());
+                this.setVisible(false);
                 JOptionPane.showMessageDialog(null, "DATOS ACTUALIZADOS", "DATOS", JOptionPane.INFORMATION_MESSAGE);
             }
         } else {

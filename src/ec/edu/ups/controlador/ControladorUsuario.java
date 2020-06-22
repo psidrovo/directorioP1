@@ -57,9 +57,9 @@ public class ControladorUsuario {
         Usuario registroUsuario = new Usuario(cedula, nombre, apellido, correo, contrasena);
         usuarioDao.create(registroUsuario);
     }
-    
-    public void actualizar(String cedula, String nombre, String apellido, String correo, String contrasena) {
-        usuarioDao.delete(usuario.getCorreo()+usuario.getContrasena());
+
+    public void actualizarDatos(String cedula, String nombre, String apellido, String correo, String contrasena) {
+        usuarioDao.delete(usuario.getCorreo() + usuario.getContrasena());
         //Actualizamos los datos
         usuario.setCedula(cedula);
         usuario.setNombre(nombre);
@@ -174,9 +174,9 @@ public class ControladorUsuario {
      * validamos unicamente con el correo
      */
     public List<Telefono> verTelefonosGeneralUsuario(String credencial, String tipo) {
-        if(tipo.equals("CEDULA")){
-            usuario=usuarioDao.telefonosCedula(credencial);
-        }else{
+        if (tipo.equals("CEDULA")) {
+            usuario = usuarioDao.telefonosCedula(credencial);
+        } else {
             usuario = usuarioDao.telefonosCorreo(credencial);
         }
         if (usuario != null) {
@@ -184,7 +184,6 @@ public class ControladorUsuario {
         }
         return null;
     }
-    
 
     /**
      * Metodo verUsuario.
@@ -194,7 +193,7 @@ public class ControladorUsuario {
     public Usuario verUsuario() {
         return usuario;
     }
-    
+
     public void actualizarUsuario(String nombre, String apellido, String cedula) {
         usuario.actualizarDatos(nombre, apellido, cedula);
         usuarioDao.update(usuario);
