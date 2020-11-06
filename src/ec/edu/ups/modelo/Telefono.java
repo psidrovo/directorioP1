@@ -9,6 +9,7 @@ public class Telefono {
     private String numero;
     private String tipo;
     private String operadora;
+    private String cedulaUsuario;
 
     public Telefono() {
     }
@@ -19,6 +20,11 @@ public class Telefono {
         this.tipo = tipo;
         this.operadora = operadora;
     }
+
+    public Telefono(int codigo) {
+        this.codigo = codigo;
+    }
+    
 
     public int getCodigo() {
         return codigo;

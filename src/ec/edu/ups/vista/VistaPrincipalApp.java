@@ -5,18 +5,15 @@
  */
 package ec.edu.ups.vista;
 
-import ec.edu.ups.controlador.ControladorTelefono;
-import ec.edu.ups.controlador.ControladorUsuario;
-import ec.edu.ups.dao.TelefonoDao;
-import ec.edu.ups.dao.UsuarioDao;
+import ec.edu.ups.controlador.Controlador;
+import ec.edu.ups.modelo.Telefono;
 import ec.edu.ups.modelo.Usuario;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import javax.swing.ImageIcon;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
 import javax.swing.JMenuItem;
-import javax.swing.JTextField;
 
 /**
  *
@@ -30,12 +27,11 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
     private VistaMiDirectorio miDirectorio;
     private VistaRegistrar resgistrar;
     private VistaEditarUsuario editarUsuario;
-    //Dao
-    private TelefonoDao daoTelefono;
-    private UsuarioDao daoUsuario;
     //Controlador
-    private ControladorTelefono controladorTelefono;
-    private ControladorUsuario controladorUsuario;
+    private Controlador controladorUsuarioGenerico;
+    private Controlador controladorTelefonoGenerico;
+    private Locale localizacion;
+    private ResourceBundle mensajes;
 
     public VistaPrincipalApp() {
         initComponents();
@@ -44,18 +40,16 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
         lblFondo.setSize(screenSize);
         lblTitulo.setBounds(10, (int) screenSize.getHeight() - 200, 1000, 40);
         lblUsuarioLogin.setBounds(10, (int) screenSize.getHeight() - 275, 1500, 40);
-        //CREAR DAO Y CONTROLADORES
-        daoTelefono = new TelefonoDao();
-        daoUsuario = new UsuarioDao();
-        controladorTelefono = new ControladorTelefono(daoTelefono);
-        controladorUsuario = new ControladorUsuario(daoUsuario, daoTelefono);
+        //CREAR CONTROLADORES
+        controladorUsuarioGenerico = new Controlador<Usuario>();
+        controladorTelefonoGenerico = new Controlador<Telefono>();
 
         //CREAR VISTAS
-        inicioSesion = new VistaInicioSesion(this, controladorUsuario, controladorTelefono);
-        directorioGeneral = new VistaDirectorioGeneral(controladorUsuario, controladorTelefono);
-        miDirectorio = new VistaMiDirectorio(controladorUsuario, controladorTelefono);
-        resgistrar = new VistaRegistrar(controladorUsuario, controladorTelefono);
-        editarUsuario = new VistaEditarUsuario(controladorUsuario, controladorTelefono,this);
+        inicioSesion = new VistaInicioSesion(this,controladorUsuarioGenerico,controladorTelefonoGenerico);
+        directorioGeneral = new VistaDirectorioGeneral(controladorUsuarioGenerico, controladorTelefonoGenerico);
+        miDirectorio = new VistaMiDirectorio(controladorUsuarioGenerico, controladorTelefonoGenerico);
+        resgistrar = new VistaRegistrar(controladorUsuarioGenerico,controladorTelefonoGenerico);
+        editarUsuario = new VistaEditarUsuario(controladorUsuarioGenerico,controladorTelefonoGenerico, this);
 
         //Agregar Panel
         desktopPane.add(inicioSesion);
@@ -66,6 +60,24 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
 
         //Posicion
         this.setLocationRelativeTo(null);
+        
+        //Idioma
+        localizacion = new Locale("es","EC");
+        mensajes = ResourceBundle.getBundle("ec.edu.ups.idioma.mensajes", localizacion);
+        cambiarIdiomaVistaPrincipal();
+    }
+
+    public void cambiarIdiomaVistaPrincipal() {
+        mnCerrarSesion.setText(mensajes.getString("finalizarSesion"));
+        mnDirectorioGeneral.setText(mensajes.getString("directorioGeneral"));
+        mnDirectorios.setText(mensajes.getString("menuDirectorio"));
+        mnEditarMisDatos.setText(mensajes.getString("editarDatos"));
+        mnIdioma.setText(mensajes.getString("idioma"));
+        mnIniciarSesion.setText(mensajes.getString("iniciarSesion"));
+        mnMisTelefonos.setText(mensajes.getString("directorioPersonal"));
+        mnRegistrarse.setText(mensajes.getString("registrarse"));
+        mnSalir.setText(mensajes.getString("salir"));
+        mnInicio.setText(mensajes.getString("inicio"));
     }
 
     /**
@@ -82,7 +94,7 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
         lblUsuarioLogin = new javax.swing.JLabel();
         lblTitulo = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
-        fileMenu = new javax.swing.JMenu();
+        mnInicio = new javax.swing.JMenu();
         mnIniciarSesion = new javax.swing.JMenuItem();
         mnRegistrarse = new javax.swing.JMenuItem();
         mnCerrarSesion = new javax.swing.JMenuItem();
@@ -91,6 +103,9 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
         mnDirectorioGeneral = new javax.swing.JMenuItem();
         mnMisTelefonos = new javax.swing.JMenuItem();
         mnEditarMisDatos = new javax.swing.JMenuItem();
+        mnIdioma = new javax.swing.JMenu();
+        mnEspañol = new javax.swing.JMenuItem();
+        mnIngles = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("DIRECTORIO TELEFONICO");
@@ -114,9 +129,9 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
 
         menuBar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
-        fileMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/iconos/power.png"))); // NOI18N
-        fileMenu.setMnemonic('f');
-        fileMenu.setText("INICIO");
+        mnInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/iconos/power.png"))); // NOI18N
+        mnInicio.setMnemonic('f');
+        mnInicio.setText("INICIO");
 
         mnIniciarSesion.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         mnIniciarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/iconos/usuario (1).png"))); // NOI18N
@@ -127,7 +142,7 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
                 mnIniciarSesionActionPerformed(evt);
             }
         });
-        fileMenu.add(mnIniciarSesion);
+        mnInicio.add(mnIniciarSesion);
 
         mnRegistrarse.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         mnRegistrarse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/iconos/anadir.png"))); // NOI18N
@@ -138,7 +153,7 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
                 mnRegistrarseActionPerformed(evt);
             }
         });
-        fileMenu.add(mnRegistrarse);
+        mnInicio.add(mnRegistrarse);
 
         mnCerrarSesion.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         mnCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/iconos/cerrar-sesion.png"))); // NOI18N
@@ -150,7 +165,7 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
                 mnCerrarSesionActionPerformed(evt);
             }
         });
-        fileMenu.add(mnCerrarSesion);
+        mnInicio.add(mnCerrarSesion);
 
         mnSalir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         mnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/iconos/cerrar.png"))); // NOI18N
@@ -161,9 +176,9 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
                 mnSalirActionPerformed(evt);
             }
         });
-        fileMenu.add(mnSalir);
+        mnInicio.add(mnSalir);
 
-        menuBar.add(fileMenu);
+        menuBar.add(mnInicio);
 
         mnDirectorios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/iconos/directorio.png"))); // NOI18N
         mnDirectorios.setMnemonic('e');
@@ -205,6 +220,26 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
         mnDirectorios.add(mnEditarMisDatos);
 
         menuBar.add(mnDirectorios);
+
+        mnIdioma.setText("IDIOMA");
+
+        mnEspañol.setText("ES");
+        mnEspañol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnEspañolActionPerformed(evt);
+            }
+        });
+        mnIdioma.add(mnEspañol);
+
+        mnIngles.setText("EN");
+        mnIngles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnInglesActionPerformed(evt);
+            }
+        });
+        mnIdioma.add(mnIngles);
+
+        menuBar.add(mnIdioma);
 
         setJMenuBar(menuBar);
 
@@ -259,7 +294,7 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
     }//GEN-LAST:event_mnSalirActionPerformed
 
     private void mnMisTelefonosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnMisTelefonosActionPerformed
-        ocultar();        
+        ocultar();
         miDirectorio.setVisible(true);
     }//GEN-LAST:event_mnMisTelefonosActionPerformed
 
@@ -267,6 +302,19 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
         ocultar();
         editarUsuario.setVisible(true);
     }//GEN-LAST:event_mnEditarMisDatosActionPerformed
+
+    private void mnEspañolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnEspañolActionPerformed
+        localizacion = new Locale("es", "ES");
+        mensajes = ResourceBundle.getBundle("ec.edu.ups.idioma.mensajes", localizacion);
+        cambiarIdiomaVistaPrincipal();
+    }//GEN-LAST:event_mnEspañolActionPerformed
+
+    private void mnInglesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnInglesActionPerformed
+        localizacion = new Locale("en", "UK");
+        mensajes = ResourceBundle.getBundle("ec.edu.ups.idioma.mensajes", localizacion);
+        cambiarIdiomaVistaPrincipal();
+        resgistrar.cambiarIdiomaVistaRegistrar(mensajes);
+    }//GEN-LAST:event_mnInglesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -344,7 +392,6 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktopPane;
-    private javax.swing.JMenu fileMenu;
     private javax.swing.JLabel lblFondo;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblUsuarioLogin;
@@ -353,7 +400,11 @@ public class VistaPrincipalApp extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnDirectorioGeneral;
     private javax.swing.JMenu mnDirectorios;
     private javax.swing.JMenuItem mnEditarMisDatos;
+    private javax.swing.JMenuItem mnEspañol;
+    private javax.swing.JMenu mnIdioma;
+    private javax.swing.JMenuItem mnIngles;
     private javax.swing.JMenuItem mnIniciarSesion;
+    private javax.swing.JMenu mnInicio;
     private javax.swing.JMenuItem mnMisTelefonos;
     private javax.swing.JMenuItem mnRegistrarse;
     private javax.swing.JMenuItem mnSalir;

@@ -5,11 +5,11 @@
  */
 package ec.edu.ups.vista;
 
-import ec.edu.ups.controlador.ControladorTelefono;
-import ec.edu.ups.controlador.ControladorUsuario;
+import ec.edu.ups.controlador.Controlador;
 import ec.edu.ups.modelo.Telefono;
 import ec.edu.ups.modelo.Usuario;
 import java.util.List;
+import java.util.Optional;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -20,14 +20,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class VistaDirectorioGeneral extends javax.swing.JInternalFrame {
     
-    private ControladorTelefono controladorTelefono;
-    private ControladorUsuario controladorUsuario;
+    private Controlador controladorUsuarioGenerico;
+    private Controlador controladorTelefonoGenerico;
     
-    public VistaDirectorioGeneral(ControladorUsuario controladorUsuario, ControladorTelefono controladorTelefono) {
+
+    VistaDirectorioGeneral(Controlador controladorUsuarioGenerico, Controlador controladorTelefonoGenerico) {
         initComponents();
-        //ASIGNAR PARAMETROS
-        this.controladorTelefono = controladorTelefono;
-        this.controladorUsuario = controladorUsuario;
+        this.controladorUsuarioGenerico = controladorUsuarioGenerico;
+        this.controladorTelefonoGenerico = controladorTelefonoGenerico;
     }
 
     /**
@@ -50,11 +50,9 @@ public class VistaDirectorioGeneral extends javax.swing.JInternalFrame {
         lblNombre1 = new javax.swing.JLabel();
         lblCedula = new javax.swing.JLabel();
         lblApellido1 = new javax.swing.JLabel();
-        lblCorreo = new javax.swing.JLabel();
         txtCedula = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
         txtApellido = new javax.swing.JTextField();
-        txtCorreo = new javax.swing.JTextField();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
@@ -78,7 +76,7 @@ public class VistaDirectorioGeneral extends javax.swing.JInternalFrame {
         });
 
         cmdTipoDato.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        cmdTipoDato.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR TIPO", "CORREO", "CEDULA" }));
+        cmdTipoDato.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR TIPO", "CODIGO", "CEDULA" }));
 
         btBuscar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         btBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/iconos/buscar.png"))); // NOI18N
@@ -129,9 +127,6 @@ public class VistaDirectorioGeneral extends javax.swing.JInternalFrame {
         lblApellido1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         lblApellido1.setText("APELLIDO");
 
-        lblCorreo.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        lblCorreo.setText("CORREO");
-
         txtCedula.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         txtCedula.setEnabled(false);
         txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -146,9 +141,6 @@ public class VistaDirectorioGeneral extends javax.swing.JInternalFrame {
         txtApellido.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         txtApellido.setEnabled(false);
 
-        txtCorreo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        txtCorreo.setEnabled(false);
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -158,12 +150,10 @@ public class VistaDirectorioGeneral extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblNombre1)
                     .addComponent(lblCedula)
-                    .addComponent(lblApellido1)
-                    .addComponent(lblCorreo))
+                    .addComponent(lblApellido1))
                 .addGap(73, 73, 73)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(txtApellido, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
-                    .addComponent(txtCorreo)
                     .addComponent(txtCedula)
                     .addComponent(txtNombre))
                 .addContainerGap())
@@ -183,10 +173,6 @@ public class VistaDirectorioGeneral extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblApellido1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtApellido))
-                .addGap(10, 10, 10)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtCorreo))
                 .addContainerGap())
         );
 
@@ -211,11 +197,11 @@ public class VistaDirectorioGeneral extends javax.swing.JInternalFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 971, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(360, 360, 360)
-                .addComponent(btListarTodos))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(354, 354, 354)
                 .addComponent(lblTitulo))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(372, 372, 372)
+                .addComponent(btListarTodos))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,9 +215,9 @@ public class VistaDirectorioGeneral extends javax.swing.JInternalFrame {
                     .addComponent(btBuscar))
                 .addGap(11, 11, 11)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
+                .addGap(28, 28, 28)
                 .addComponent(btListarTodos)
-                .addGap(15, 15, 15)
+                .addGap(34, 34, 34)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10))
         );
@@ -255,14 +241,13 @@ public class VistaDirectorioGeneral extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btListarTodosActionPerformed
     
     public void ActualizarTabla() {
-        List<Telefono> listaTelefonos = controladorTelefono.verTelefonos();
-        
+        var tel = (List<Telefono>)controladorTelefonoGenerico.getListDatos();        
         DefaultTableModel modelo = (DefaultTableModel) tblDirectorioGeneral.getModel();
         modelo.setRowCount(0);
         tblDirectorioGeneral.setModel(modelo);
         Object[] fila = new Object[4];
         
-        for (Telefono telefono : listaTelefonos) {
+        for (Telefono telefono : tel) {
             fila[0] = telefono.getCodigo();
             fila[1] = telefono.getNumero();
             fila[2] = telefono.getTipo();
@@ -279,14 +264,28 @@ public class VistaDirectorioGeneral extends javax.swing.JInternalFrame {
                 
                 JOptionPane.showMessageDialog(null, "INGRESE UN VALOR", "ERROR DE DATOS", JOptionPane.WARNING_MESSAGE);
             } else {
-                List<Telefono> listaTelefonos = controladorUsuario.verTelefonosGeneralUsuario(txtDatoBusqueda.getText(), cmdTipoDato.getSelectedItem().toString());
-                if (listaTelefonos != null) {
+                if(cmdTipoDato.getSelectedItem().toString().equals("CODIGO")){
+                    var tel = (Optional<Telefono>) controladorTelefonoGenerico.read(new Telefono(Integer.valueOf(txtDatoBusqueda.getText())));
                     DefaultTableModel modelo = (DefaultTableModel) tblDirectorioGeneral.getModel();
                     modelo.setRowCount(0);
                     tblDirectorioGeneral.setModel(modelo);
                     Object[] fila = new Object[4];
                     
-                    for (Telefono telefono : listaTelefonos) {
+                        fila[0] = tel.get().getCodigo();
+                        fila[1] = tel.get().getNumero();
+                        fila[2] = tel.get().getTipo();
+                        fila[3] = tel.get().getOperadora();
+                        modelo.addRow(fila);
+                    
+                    this.tblDirectorioGeneral.setModel(modelo);
+                }else{
+                    var us = (Optional<Usuario>) controladorUsuarioGenerico.read(new Usuario(txtDatoBusqueda.getText()));
+                    DefaultTableModel modelo = (DefaultTableModel) tblDirectorioGeneral.getModel();
+                    modelo.setRowCount(0);
+                    tblDirectorioGeneral.setModel(modelo);
+                    Object[] fila = new Object[4];
+                    
+                    for (Telefono telefono : us.get().getDirectorio()) {
                         fila[0] = telefono.getCodigo();
                         fila[1] = telefono.getNumero();
                         fila[2] = telefono.getTipo();
@@ -294,13 +293,9 @@ public class VistaDirectorioGeneral extends javax.swing.JInternalFrame {
                         modelo.addRow(fila);
                     }
                     this.tblDirectorioGeneral.setModel(modelo);
-                    Usuario usuarioBuscado = controladorUsuario.verUsuario();
-                    txtNombre.setText(usuarioBuscado.getNombre());
-                    txtApellido.setText(usuarioBuscado.getApellido());
-                    txtCedula.setText(usuarioBuscado.getCedula());
-                    txtCorreo.setText(usuarioBuscado.getCorreo());
-                } else {
-                    JOptionPane.showMessageDialog(null, "NO EXISTE USUARIO", "ERROR DE DATOS", JOptionPane.WARNING_MESSAGE);
+                    txtNombre.setText(us.get().getNombre());
+                    txtApellido.setText(us.get().getApellido());
+                    txtCedula.setText(us.get().getCedula());
                 }
             }
         }
@@ -331,13 +326,11 @@ public class VistaDirectorioGeneral extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblApellido1;
     private javax.swing.JLabel lblCedula;
-    private javax.swing.JLabel lblCorreo;
     private javax.swing.JLabel lblNombre1;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JTable tblDirectorioGeneral;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtCedula;
-    private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDatoBusqueda;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables

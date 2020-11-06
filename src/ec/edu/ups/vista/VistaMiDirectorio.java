@@ -5,18 +5,17 @@
  */
 package ec.edu.ups.vista;
 
-import ec.edu.ups.controlador.ControladorTelefono;
-import ec.edu.ups.controlador.ControladorUsuario;
+import ec.edu.ups.controlador.Controlador;
+import ec.edu.ups.controlador.ControladorGeneral;
 import ec.edu.ups.modelo.Telefono;
+import ec.edu.ups.modelo.Usuario;
 import java.text.ParseException;
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.DefaultListModel;
-import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.text.MaskFormatter;
 
 /**
  *
@@ -24,13 +23,15 @@ import javax.swing.text.MaskFormatter;
  */
 public class VistaMiDirectorio extends javax.swing.JInternalFrame {
 
-    private ControladorTelefono controladorTelefono;
-    private ControladorUsuario controladorUsuario;
+    private Controlador controladorUsuarioGenerico;
+    private Controlador controladorTelefonoGenerico;
+    private ControladorGeneral controladorGeneral;
 
-    public VistaMiDirectorio(ControladorUsuario controladorUsuario, ControladorTelefono controladorTelefono) {
+    VistaMiDirectorio(Controlador controladorUsuarioGenerico, Controlador controladorTelefonoGenerico) {
         initComponents();
-        this.controladorTelefono = controladorTelefono;
-        this.controladorUsuario = controladorUsuario;
+        this.controladorUsuarioGenerico = controladorUsuarioGenerico;
+        this.controladorTelefonoGenerico = controladorTelefonoGenerico;
+        this.controladorGeneral = new ControladorGeneral(controladorUsuarioGenerico, controladorTelefonoGenerico);
     }
 
     /**
@@ -334,15 +335,15 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
                 || cmbTipo.getSelectedItem().toString().equals("SELECCIONAR") || cmbOperadora.getSelectedItem().toString().equals("SELECCIONAR")) {
             JOptionPane.showMessageDialog(null, "LLENE TODOS LOS CAMPOS", "AGREGADO", JOptionPane.ERROR_MESSAGE);
         } else {
-            controladorUsuario.agregarTelefono(Integer.valueOf(txtCodigo.getText()), txtNumero.getValue().toString(),
-                    cmbTipo.getSelectedItem().toString(), cmbOperadora.getSelectedItem().toString());
+            controladorGeneral.agregarTelefonoUsuario(new Telefono(Integer.valueOf(txtCodigo.getText()), txtNumero.getValue().toString(),
+                    cmbTipo.getSelectedItem().toString(), cmbOperadora.getSelectedItem().toString()));
             JOptionPane.showMessageDialog(null, "TELEFONO AGREGADO CORRECTAMENTE", "AGREGADO", JOptionPane.INFORMATION_MESSAGE);
             Limpiar();
             ActualizarTabla();
         }
     }//GEN-LAST:event_btAgregarActionPerformed
     public void Limpiar() {
-        txtCodigo.setText(String.valueOf(controladorTelefono.getCodigoSiguiente()));
+        txtCodigo.setText(String.valueOf(controladorTelefonoGenerico.codigoTelefono()));
         txtNumero.setValue("");
         cmbTipo.setSelectedIndex(0);
         cmbOperadora.setSelectedIndex(0);
@@ -353,8 +354,8 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
                 || cmbTipo.getSelectedItem().toString().equals("SELECCIONAR") || cmbOperadora.getSelectedItem().toString().equals("SELECCIONAR")) {
             JOptionPane.showMessageDialog(null, "LLENE TODOS LOS CAMPOS", "EDITAR", JOptionPane.ERROR_MESSAGE);
         } else {
-            controladorUsuario.actualizarTelefono(Integer.valueOf(txtCodigo.getText()), txtNumero.getText(),
-                    cmbTipo.getSelectedItem().toString(), cmbOperadora.getSelectedItem().toString());
+            controladorGeneral.actualizarTelefono(new Telefono(Integer.valueOf(txtCodigo.getText()), txtNumero.getText(),
+                    cmbTipo.getSelectedItem().toString(), cmbOperadora.getSelectedItem().toString()));
 
             JOptionPane.showMessageDialog(null, "TELEFONO AGREGADO CORRECTAMENTE", "AGREGADO", JOptionPane.INFORMATION_MESSAGE);
             Limpiar();
@@ -364,7 +365,8 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btActualizarActionPerformed
 
     public void ActualizarTabla() {
-        List<Telefono> listaTelefonos = controladorUsuario.verTelefonos();
+        var us = (Optional<Usuario>) controladorUsuarioGenerico.getObj();
+        List<Telefono> listaTelefonos = us.get().getDirectorio();
 
         DefaultTableModel modelo = (DefaultTableModel) tblDirectorio.getModel();
         modelo.setRowCount(0);
@@ -553,7 +555,7 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cmbTipoActionPerformed
 
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
-        txtCodigo.setText(String.valueOf(controladorTelefono.getCodigoSiguiente()));
+        txtCodigo.setText(String.valueOf(controladorTelefonoGenerico.codigoTelefono()));
         Limpiar();
         Desactivar();
         ActualizarTabla();
@@ -573,7 +575,7 @@ public class VistaMiDirectorio extends javax.swing.JInternalFrame {
         int confirmar = JOptionPane.showConfirmDialog(null, "ELIMINAR EL TELEFONO SELECCIONADO?");
         if (JOptionPane.OK_OPTION == confirmar) {
             int codigo = Integer.valueOf(txtCodigo.getText());
-            controladorUsuario.eliminarTelefono(codigo);
+            controladorGeneral.eliminarTelefono(new Telefono(codigo));
             ActualizarTabla();
             JOptionPane.showMessageDialog(null, "TELEFONO ELIMINADO", "ELIMINADO", JOptionPane.INFORMATION_MESSAGE);
             Desactivar();

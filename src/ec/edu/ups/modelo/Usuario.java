@@ -13,20 +13,27 @@ public class Usuario {
     private String cedula;
     private String nombre;
     private String apellido;
-    private String correo;
-    private String contrasena;
     private List<Telefono> directorio;
     
     public Usuario() {
         directorio=new ArrayList<Telefono>();
     }
 
-    public Usuario(String cedula, String nombre, String apellido, String correo, String contrasena) {
+    public Usuario(String cedula) {
+        this.cedula = cedula;
+    }   
+
+    public Usuario(String cedula, String nombre, String apellido, List<Telefono> directorio) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.correo = correo;
-        this.contrasena = contrasena;
+        this.directorio = directorio;
+    }
+
+    public Usuario(String cedula, String nombre, String apellido) {
+        this.cedula = cedula;
+        this.nombre = nombre;
+        this.apellido = apellido;
         this.directorio=new ArrayList<Telefono>();
     }
 
@@ -52,22 +59,6 @@ public class Usuario {
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    public String getContrasena() {
-        return contrasena;
-    }
-
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
     }
 
     public List<Telefono> getDirectorio() {
@@ -115,13 +106,11 @@ public class Usuario {
         setApellido(apellido);
         setCedula(cedula);
     }
-    
-    
+
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 37 * hash + Objects.hashCode(this.correo);
-        hash = 37 * hash + Objects.hashCode(this.contrasena);
+        hash = 97 * hash + Objects.hashCode(this.cedula);
         return hash;
     }
 
@@ -137,10 +126,7 @@ public class Usuario {
             return false;
         }
         final Usuario other = (Usuario) obj;
-        if (!Objects.equals(this.correo, other.correo)) {
-            return false;
-        }
-        if (!Objects.equals(this.contrasena, other.contrasena)) {
+        if (!Objects.equals(this.cedula, other.cedula)) {
             return false;
         }
         return true;
@@ -148,7 +134,7 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{" + "cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", correo=" + correo + ", contrasena=" + contrasena + ", directorio=" + directorio + '}';
+        return "Usuario{" + "cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", directorio=" + directorio + '}';
     }
-    
+        
 }

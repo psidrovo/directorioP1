@@ -30,16 +30,10 @@
                   <Component id="lblNombre" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="lblCedula" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="lblApellido" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblCorreo" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblPassword" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblConfirmPassword" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="2" attributes="0">
                   <Component id="txtApellido" alignment="2" max="32767" attributes="0"/>
-                  <Component id="txtCorreo" alignment="2" max="32767" attributes="0"/>
-                  <Component id="pwsPassword" alignment="2" max="32767" attributes="0"/>
-                  <Component id="pwsConfirmar" alignment="2" max="32767" attributes="0"/>
                   <Component id="txtCedula" alignment="2" max="32767" attributes="0"/>
                   <Component id="txtNombre" alignment="2" max="32767" attributes="0"/>
               </Group>
@@ -49,7 +43,7 @@
               <EmptySpace min="-2" pref="135" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="btRegistrar" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblTitulo" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="124" max="-2" attributes="0"/>
           </Group>
@@ -59,7 +53,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <Component id="lblTitulo" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblCedula" alignment="3" max="32767" attributes="0"/>
@@ -75,22 +69,7 @@
                   <Component id="lblApellido" alignment="3" max="32767" attributes="0"/>
                   <Component id="txtApellido" alignment="3" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblCorreo" alignment="3" max="32767" attributes="0"/>
-                  <Component id="txtCorreo" alignment="3" max="32767" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblPassword" alignment="3" max="32767" attributes="0"/>
-                  <Component id="pwsPassword" alignment="3" max="32767" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblConfirmPassword" alignment="3" max="32767" attributes="0"/>
-                  <Component id="pwsConfirmar" alignment="3" max="32767" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Component id="btRegistrar" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
           </Group>
@@ -98,7 +77,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="lblTitulo">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Verdana" size="18" style="1"/>
@@ -130,30 +109,6 @@
         <Property name="text" type="java.lang.String" value="APELLIDO"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblCorreo">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Verdana" size="12" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="CORREO"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblPassword">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Verdana" size="12" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="CONTRASE&#xd1;A"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblConfirmPassword">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Verdana" size="12" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="CONFIRMAR"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JTextField" name="txtCedula">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -172,27 +127,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtApellido">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Verdana" size="12" style="0"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtCorreo">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Verdana" size="12" style="0"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JPasswordField" name="pwsPassword">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Verdana" size="12" style="0"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JPasswordField" name="pwsConfirmar">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Verdana" size="12" style="0"/>

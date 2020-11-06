@@ -5,8 +5,9 @@
  */
 package ec.edu.ups.vista;
 
-import ec.edu.ups.controlador.ControladorTelefono;
-import ec.edu.ups.controlador.ControladorUsuario;
+import ec.edu.ups.controlador.Controlador;
+import ec.edu.ups.modelo.Usuario;
+import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,13 +16,13 @@ import javax.swing.JOptionPane;
  */
 public class VistaRegistrar extends javax.swing.JInternalFrame {
 
-    private ControladorTelefono controladorTelefono;
-    private ControladorUsuario controladorUsuario;
+    private Controlador controladorUsuarioGenerico;
+    private Controlador controladorTelefonoGenerico;
 
-    public VistaRegistrar(ControladorUsuario controladorUsuario, ControladorTelefono controladorTelefono) {
+    VistaRegistrar(Controlador controladorUsuarioGenerico, Controlador controladorTelefonoGenerico) {
         initComponents();
-        this.controladorTelefono = controladorTelefono;
-        this.controladorUsuario = controladorUsuario;
+        this.controladorTelefonoGenerico = controladorTelefonoGenerico;
+        this.controladorUsuarioGenerico = controladorUsuarioGenerico;
     }
 
     /**
@@ -33,27 +34,21 @@ public class VistaRegistrar extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        lblTitulo = new javax.swing.JLabel();
         lblNombre = new javax.swing.JLabel();
         lblCedula = new javax.swing.JLabel();
         lblApellido = new javax.swing.JLabel();
-        lblCorreo = new javax.swing.JLabel();
-        lblPassword = new javax.swing.JLabel();
-        lblConfirmPassword = new javax.swing.JLabel();
         txtCedula = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
         txtApellido = new javax.swing.JTextField();
-        txtCorreo = new javax.swing.JTextField();
-        pwsPassword = new javax.swing.JPasswordField();
-        pwsConfirmar = new javax.swing.JPasswordField();
         btRegistrar = new javax.swing.JButton();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         setTitle("REGISTRAR");
 
-        jLabel1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
-        jLabel1.setText("REGISTRAR");
+        lblTitulo.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        lblTitulo.setText("REGISTRAR");
 
         lblNombre.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         lblNombre.setText("NOMBRE");
@@ -63,15 +58,6 @@ public class VistaRegistrar extends javax.swing.JInternalFrame {
 
         lblApellido.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         lblApellido.setText("APELLIDO");
-
-        lblCorreo.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        lblCorreo.setText("CORREO");
-
-        lblPassword.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        lblPassword.setText("CONTRASEÑA");
-
-        lblConfirmPassword.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        lblConfirmPassword.setText("CONFIRMAR");
 
         txtCedula.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -83,12 +69,6 @@ public class VistaRegistrar extends javax.swing.JInternalFrame {
         txtNombre.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
 
         txtApellido.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-
-        txtCorreo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-
-        pwsPassword.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-
-        pwsConfirmar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
 
         btRegistrar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         btRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/iconos/salvar.png"))); // NOI18N
@@ -108,16 +88,10 @@ public class VistaRegistrar extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblNombre)
                     .addComponent(lblCedula)
-                    .addComponent(lblApellido)
-                    .addComponent(lblCorreo)
-                    .addComponent(lblPassword)
-                    .addComponent(lblConfirmPassword))
-                .addGap(50, 50, 50)
+                    .addComponent(lblApellido))
+                .addGap(73, 73, 73)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(txtApellido)
-                    .addComponent(txtCorreo)
-                    .addComponent(pwsPassword)
-                    .addComponent(pwsConfirmar)
                     .addComponent(txtCedula)
                     .addComponent(txtNombre))
                 .addGap(30, 30, 30))
@@ -125,14 +99,14 @@ public class VistaRegistrar extends javax.swing.JInternalFrame {
                 .addGap(135, 135, 135)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btRegistrar)
-                    .addComponent(jLabel1))
+                    .addComponent(lblTitulo))
                 .addGap(124, 124, 124))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(lblTitulo)
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCedula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -145,19 +119,7 @@ public class VistaRegistrar extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblApellido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtApellido))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtCorreo))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pwsPassword))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblConfirmPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pwsConfirmar))
-                .addGap(28, 28, 28)
+                .addGap(30, 30, 30)
                 .addComponent(btRegistrar)
                 .addGap(21, 21, 21))
         );
@@ -175,51 +137,33 @@ public class VistaRegistrar extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtCedulaKeyTyped
 
     private void btRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistrarActionPerformed
-        String password = "";
-        char[] password2 = pwsPassword.getPassword();
-        for (int x = 0; x < password2.length; x++) {
-            password += password2[x];
-        }
-        String confirmar = "";
-        char[] confirmar2 = pwsConfirmar.getPassword();
-        for (int x = 0; x < confirmar2.length; x++) {
-            confirmar += confirmar2[x];
-        }
-        if (confirmar.equals(password)) {
-
-            if (txtNombre.getText().equals("") || password.equals("") || txtApellido.getText().equals("") || txtCedula.getText().equals("") || txtCorreo.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "LLENE TODOS LOS CAMPOS", "ERROR", JOptionPane.ERROR_MESSAGE);
-            } else {
-                controladorUsuario.registrar(txtCedula.getText(), txtNombre.getText(), txtApellido.getText(), txtCorreo.getText(), password);
-                this.setVisible(false);
-                txtApellido.setText("");
-                txtCedula.setText("");
-                txtCorreo.setText("");
-                txtNombre.setText("");
-                pwsConfirmar.setText("");
-                pwsPassword.setText("");
-                JOptionPane.showMessageDialog(null, "REGISTRO EXITOSO", "REGISTRO", JOptionPane.INFORMATION_MESSAGE);
-            }
+        if (txtNombre.getText().equals("") || txtApellido.getText().equals("") || txtCedula.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "LLENE TODOS LOS CAMPOS", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(null, "CONTRASEÑAS NO CONINCIDEN", "ERROR", JOptionPane.ERROR_MESSAGE);
+            controladorUsuarioGenerico.create(new Usuario(txtCedula.getText(), txtNombre.getText(), txtApellido.getText()));
+            this.setVisible(false);
+            txtApellido.setText("");
+            txtCedula.setText("");
+            txtNombre.setText("");
+            JOptionPane.showMessageDialog(null, "REGISTRO EXITOSO", "REGISTRO", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btRegistrarActionPerformed
 
+    public void cambiarIdiomaVistaRegistrar(ResourceBundle mensajes) {
+        lblTitulo.setText(mensajes.getString("registrarse"));
+        lblCedula.setText(mensajes.getString("cedula"));
+        lblApellido.setText(mensajes.getString("apellido"));
+        lblNombre.setText(mensajes.getString("nombre"));
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btRegistrar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblApellido;
     private javax.swing.JLabel lblCedula;
-    private javax.swing.JLabel lblConfirmPassword;
-    private javax.swing.JLabel lblCorreo;
     private javax.swing.JLabel lblNombre;
-    private javax.swing.JLabel lblPassword;
-    private javax.swing.JPasswordField pwsConfirmar;
-    private javax.swing.JPasswordField pwsPassword;
+    private javax.swing.JLabel lblTitulo;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtCedula;
-    private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }
